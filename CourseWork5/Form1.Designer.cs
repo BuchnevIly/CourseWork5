@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.вопросыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.разделыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,7 +57,51 @@
             this.открытьСтатистикуПоГруппамToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.открытьСтатистикуПоСтудентамToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.открытьСтатистикуПоРазделамToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.navigation = new System.Windows.Forms.TreeView();
+            this.contextMenuStripUnit = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.новыйРазделToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStripUnitChild = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.изменитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStripTest = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuStripGroup = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.добавитьНовуюГруппуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.добавитьНовуюКонтрольнуюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStripUser = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.добавитьПолзователяToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.удалиьРазделToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.изменитьРазделToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.contextMenuStripTestChild = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.удалитьКонтрольнуюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.изменитьКонтрольнуюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.добавитьВопросToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.удалитьПользователяToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.дToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.linkLabelAddNewElemen = new System.Windows.Forms.LinkLabel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
+            this.contextMenuStripUnit.SuspendLayout();
+            this.contextMenuStripUnitChild.SuspendLayout();
+            this.contextMenuStripTest.SuspendLayout();
+            this.contextMenuStripGroup.SuspendLayout();
+            this.contextMenuStripUser.SuspendLayout();
+            this.contextMenuStripTestChild.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -69,7 +114,7 @@
             this.справкаToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(620, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(806, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -199,7 +244,7 @@
             // 
             this.создатьГруппуToolStripMenuItem.Name = "создатьГруппуToolStripMenuItem";
             this.создатьГруппуToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.создатьГруппуToolStripMenuItem.Text = "Новая группу";
+            this.создатьГруппуToolStripMenuItem.Text = "Новая группа";
             // 
             // новыйСтудентToolStripMenuItem
             // 
@@ -257,17 +302,285 @@
             this.открытьСтатистикуПоРазделамToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
             this.открытьСтатистикуПоРазделамToolStripMenuItem.Text = "Статистика по разделам";
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Location = new System.Drawing.Point(0, 371);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(806, 22);
+            this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 24);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.navigation);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
+            this.splitContainer1.Size = new System.Drawing.Size(806, 347);
+            this.splitContainer1.SplitterDistance = 219;
+            this.splitContainer1.TabIndex = 3;
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.listView1);
+            this.splitContainer2.Panel1.Controls.Add(this.linkLabelAddNewElemen);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.button2);
+            this.splitContainer2.Panel2.Controls.Add(this.button1);
+            this.splitContainer2.Panel2.Controls.Add(this.webBrowser1);
+            this.splitContainer2.Size = new System.Drawing.Size(583, 347);
+            this.splitContainer2.SplitterDistance = 194;
+            this.splitContainer2.TabIndex = 0;
+            // 
+            // navigation
+            // 
+            this.navigation.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.navigation.Location = new System.Drawing.Point(0, 3);
+            this.navigation.Name = "navigation";
+            this.navigation.Size = new System.Drawing.Size(217, 341);
+            this.navigation.TabIndex = 0;
+            this.navigation.MouseUp += new System.Windows.Forms.MouseEventHandler(this.navigation_MouseUp);
+            // 
+            // contextMenuStripUnit
+            // 
+            this.contextMenuStripUnit.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.новыйРазделToolStripMenuItem1});
+            this.contextMenuStripUnit.Name = "contextMenuStripUnit";
+            this.contextMenuStripUnit.Size = new System.Drawing.Size(153, 26);
+            // 
+            // новыйРазделToolStripMenuItem1
+            // 
+            this.новыйРазделToolStripMenuItem1.Name = "новыйРазделToolStripMenuItem1";
+            this.новыйРазделToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.новыйРазделToolStripMenuItem1.Text = "Новый раздел";
+            // 
+            // contextMenuStripUnitChild
+            // 
+            this.contextMenuStripUnitChild.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.удалиьРазделToolStripMenuItem,
+            this.изменитьРазделToolStripMenuItem,
+            this.toolStripSeparator6,
+            this.изменитьToolStripMenuItem});
+            this.contextMenuStripUnitChild.Name = "contextMenuStripUnitChild";
+            this.contextMenuStripUnitChild.Size = new System.Drawing.Size(170, 76);
+            // 
+            // изменитьToolStripMenuItem
+            // 
+            this.изменитьToolStripMenuItem.Name = "изменитьToolStripMenuItem";
+            this.изменитьToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.изменитьToolStripMenuItem.Text = "Добавить вопрос";
+            // 
+            // contextMenuStripTest
+            // 
+            this.contextMenuStripTest.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.добавитьНовуюКонтрольнуюToolStripMenuItem});
+            this.contextMenuStripTest.Name = "contextMenuStripTest";
+            this.contextMenuStripTest.Size = new System.Drawing.Size(244, 26);
+            // 
+            // contextMenuStripGroup
+            // 
+            this.contextMenuStripGroup.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.добавитьНовуюГруппуToolStripMenuItem});
+            this.contextMenuStripGroup.Name = "contextMenuStripGroup";
+            this.contextMenuStripGroup.Size = new System.Drawing.Size(207, 26);
+            // 
+            // добавитьНовуюГруппуToolStripMenuItem
+            // 
+            this.добавитьНовуюГруппуToolStripMenuItem.Name = "добавитьНовуюГруппуToolStripMenuItem";
+            this.добавитьНовуюГруппуToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.добавитьНовуюГруппуToolStripMenuItem.Text = "Добавить новую группу";
+            // 
+            // добавитьНовуюКонтрольнуюToolStripMenuItem
+            // 
+            this.добавитьНовуюКонтрольнуюToolStripMenuItem.Name = "добавитьНовуюКонтрольнуюToolStripMenuItem";
+            this.добавитьНовуюКонтрольнуюToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
+            this.добавитьНовуюКонтрольнуюToolStripMenuItem.Text = "Добавить новую контрольную";
+            // 
+            // contextMenuStripUser
+            // 
+            this.contextMenuStripUser.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.удалитьПользователяToolStripMenuItem,
+            this.дToolStripMenuItem,
+            this.toolStripSeparator8,
+            this.добавитьПолзователяToolStripMenuItem});
+            this.contextMenuStripUser.Name = "contextMenuStripUser";
+            this.contextMenuStripUser.Size = new System.Drawing.Size(199, 76);
+            // 
+            // добавитьПолзователяToolStripMenuItem
+            // 
+            this.добавитьПолзователяToolStripMenuItem.Name = "добавитьПолзователяToolStripMenuItem";
+            this.добавитьПолзователяToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.добавитьПолзователяToolStripMenuItem.Text = "Добавить ползователя";
+            // 
+            // удалиьРазделToolStripMenuItem
+            // 
+            this.удалиьРазделToolStripMenuItem.Name = "удалиьРазделToolStripMenuItem";
+            this.удалиьРазделToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.удалиьРазделToolStripMenuItem.Text = "Удалить раздел";
+            // 
+            // изменитьРазделToolStripMenuItem
+            // 
+            this.изменитьРазделToolStripMenuItem.Name = "изменитьРазделToolStripMenuItem";
+            this.изменитьРазделToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.изменитьРазделToolStripMenuItem.Text = "Изменить раздел";
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(166, 6);
+            // 
+            // contextMenuStripTestChild
+            // 
+            this.contextMenuStripTestChild.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.удалитьКонтрольнуюToolStripMenuItem,
+            this.изменитьКонтрольнуюToolStripMenuItem,
+            this.toolStripSeparator7,
+            this.добавитьВопросToolStripMenuItem});
+            this.contextMenuStripTestChild.Name = "contextMenuStripTestChild";
+            this.contextMenuStripTestChild.Size = new System.Drawing.Size(207, 76);
+            // 
+            // удалитьКонтрольнуюToolStripMenuItem
+            // 
+            this.удалитьКонтрольнуюToolStripMenuItem.Name = "удалитьКонтрольнуюToolStripMenuItem";
+            this.удалитьКонтрольнуюToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.удалитьКонтрольнуюToolStripMenuItem.Text = "Удалить контрольную";
+            // 
+            // изменитьКонтрольнуюToolStripMenuItem
+            // 
+            this.изменитьКонтрольнуюToolStripMenuItem.Name = "изменитьКонтрольнуюToolStripMenuItem";
+            this.изменитьКонтрольнуюToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.изменитьКонтрольнуюToolStripMenuItem.Text = "Изменить контрольную";
+            // 
+            // добавитьВопросToolStripMenuItem
+            // 
+            this.добавитьВопросToolStripMenuItem.Name = "добавитьВопросToolStripMenuItem";
+            this.добавитьВопросToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.добавитьВопросToolStripMenuItem.Text = "Добавить вопрос";
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(203, 6);
+            // 
+            // удалитьПользователяToolStripMenuItem
+            // 
+            this.удалитьПользователяToolStripMenuItem.Name = "удалитьПользователяToolStripMenuItem";
+            this.удалитьПользователяToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.удалитьПользователяToolStripMenuItem.Text = "Удалить группу";
+            // 
+            // дToolStripMenuItem
+            // 
+            this.дToolStripMenuItem.Name = "дToolStripMenuItem";
+            this.дToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.дToolStripMenuItem.Text = "Изменить группу";
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(195, 6);
+            // 
+            // listView1
+            // 
+            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listView1.Location = new System.Drawing.Point(0, 3);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(191, 319);
+            this.listView1.TabIndex = 2;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.List;
+            // 
+            // webBrowser1
+            // 
+            this.webBrowser1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.webBrowser1.Location = new System.Drawing.Point(3, 3);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.Size = new System.Drawing.Size(379, 319);
+            this.webBrowser1.TabIndex = 0;
+            // 
+            // linkLabelAddNewElemen
+            // 
+            this.linkLabelAddNewElemen.ActiveLinkColor = System.Drawing.Color.Blue;
+            this.linkLabelAddNewElemen.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.linkLabelAddNewElemen.Location = new System.Drawing.Point(3, 322);
+            this.linkLabelAddNewElemen.Name = "linkLabelAddNewElemen";
+            this.linkLabelAddNewElemen.Size = new System.Drawing.Size(188, 22);
+            this.linkLabelAddNewElemen.TabIndex = 1;
+            this.linkLabelAddNewElemen.TabStop = true;
+            this.linkLabelAddNewElemen.Text = "Добавить вопрос";
+            this.linkLabelAddNewElemen.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Location = new System.Drawing.Point(206, 322);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Удалить";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Location = new System.Drawing.Point(287, 322);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "Изменить";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
             // TeacherPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(620, 380);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(806, 393);
+            this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "TeacherPanel";
             this.Text = "Панель преподавателя";
+            this.Load += new System.EventHandler(this.TeacherPanel_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
+            this.contextMenuStripUnit.ResumeLayout(false);
+            this.contextMenuStripUnitChild.ResumeLayout(false);
+            this.contextMenuStripTest.ResumeLayout(false);
+            this.contextMenuStripGroup.ResumeLayout(false);
+            this.contextMenuStripUser.ResumeLayout(false);
+            this.contextMenuStripTestChild.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -303,6 +616,36 @@
         private System.Windows.Forms.ToolStripMenuItem открытьСтатистикуПоГруппамToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem открытьСтатистикуПоСтудентамToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem открытьСтатистикуПоРазделамToolStripMenuItem;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.TreeView navigation;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripUnit;
+        private System.Windows.Forms.ToolStripMenuItem новыйРазделToolStripMenuItem1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripUnitChild;
+        private System.Windows.Forms.ToolStripMenuItem изменитьToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripTest;
+        private System.Windows.Forms.ToolStripMenuItem добавитьНовуюКонтрольнуюToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripGroup;
+        private System.Windows.Forms.ToolStripMenuItem добавитьНовуюГруппуToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripUser;
+        private System.Windows.Forms.ToolStripMenuItem добавитьПолзователяToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem удалиьРазделToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem изменитьРазделToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripTestChild;
+        private System.Windows.Forms.ToolStripMenuItem удалитьКонтрольнуюToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem изменитьКонтрольнуюToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.ToolStripMenuItem добавитьВопросToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem удалитьПользователяToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem дToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.WebBrowser webBrowser1;
+        private System.Windows.Forms.LinkLabel linkLabelAddNewElemen;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
     }
 }
 
