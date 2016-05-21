@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace CourseWork5
 {
-    public partial class Form1 : Form
+    public partial class TeacherPanel : Form
     {
-        public Form1()
+        public TeacherPanel()
         {
             InitializeComponent();
+        }
+
+        private void справкаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
