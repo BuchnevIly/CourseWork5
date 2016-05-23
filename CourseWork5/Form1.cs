@@ -15,6 +15,13 @@ namespace CourseWork5
         public TeacherPanel()
         {
             InitializeComponent();
+
+            //QuestionEditer form2 = new QuestionEditer();
+            //form2.Show();
+
+            TestEditer form3 = new TestEditer();
+            form3.Show();
+
         }
 
         private void TeacherPanel_Load(object sender, EventArgs e)

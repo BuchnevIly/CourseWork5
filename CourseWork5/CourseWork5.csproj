@@ -52,10 +52,55 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="GroupEditer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GroupEditer.Designer.cs">
+      <DependentUpon>GroupEditer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuestionEditer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QuestionEditer.Designer.cs">
+      <DependentUpon>QuestionEditer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Statistic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Statistic.Designer.cs">
+      <DependentUpon>Statistic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TestEditer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestEditer.Designer.cs">
+      <DependentUpon>TestEditer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TestResults.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestResults.Designer.cs">
+      <DependentUpon>TestResults.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UnitEditer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UnitEditer.Designer.cs">
+      <DependentUpon>UnitEditer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserEditer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserEditer.Designer.cs">
+      <DependentUpon>UserEditer.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GroupEditer.resx">
+      <DependentUpon>GroupEditer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -66,6 +111,24 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="QuestionEditer.resx">
+      <DependentUpon>QuestionEditer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Statistic.resx">
+      <DependentUpon>Statistic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestEditer.resx">
+      <DependentUpon>TestEditer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestResults.resx">
+      <DependentUpon>TestResults.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UnitEditer.resx">
+      <DependentUpon>UnitEditer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserEditer.resx">
+      <DependentUpon>UserEditer.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
