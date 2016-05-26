@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,17 +13,39 @@ namespace CourseWork5
 {
     public partial class TeacherPanel : Form
     {
+        private SqlConnection cnn;
+
         public TeacherPanel()
         {
             InitializeComponent();
 
-            //QuestionEditer form2 = new QuestionEditer();
-            //form2.Show();
-
-            TestEditer form3 = new TestEditer();
-            form3.Show();
-
+            string connetionString = "Data Source=DESKTOP-RD3DFVB;Initial Catalog=TestSystem;Integrated Security=True";
+            cnn = new SqlConnection(connetionString);
+            cnn.Open();
         }
+
+        // -- Добавление списка разделов
+        public void SetAllUnit()
+        {
+            var sqlCmd = new SqlCommand("get_all_unit", cnn);
+            sqlCmd.CommandType = CommandType.StoredProcedure;
+            SqlDataReader dataReader = sqlCmd.ExecuteReader();
+
+            navigation.Nodes[0].Nodes.Clear();
+
+            while (dataReader.Read())
+            {
+                int id = (int)dataReader.GetValue(0);
+                string unitName = dataReader.GetValue(1).ToString();
+                TreeNode childNodeUnit = new TreeNode(unitName);
+                childNodeUnit.Tag = "Список_разделов " + id;
+                navigation.Nodes[0].Nodes.Add(childNodeUnit);
+            }
+
+            dataReader.Close();
+        }
+
+
 
         private void TeacherPanel_Load(object sender, EventArgs e)
         {
@@ -42,13 +65,11 @@ namespace CourseWork5
             navigation.Nodes.Add(nodeTest);
             navigation.Nodes.Add(nodeGroup);
 
-            // -- Добавление списка разделов
-            for (int i = 0; i < 10; i++)
-            {
-                TreeNode childNodeUnit = new TreeNode("тестовый раздел " + i);
-                childNodeUnit.Tag = "Список_разделов";
-                navigation.Nodes[0].Nodes.Add(childNodeUnit);
-            }
+            SetAllUnit();
+
+            
+            
+
 
             // -- Добавление списка контрольных
             for (int i = 0; i < 10; i++)
@@ -88,10 +109,12 @@ namespace CourseWork5
 
                 Point p = new Point(e.X, e.Y);
                 TreeNode node = navigation.GetNodeAt(p);
+                
                 if (node != null)
                 {
                     navigation.SelectedNode = node;
-                    switch (Convert.ToString(node.Tag))
+                    string tag = node.Tag.ToString().Split(' ')[0];
+                    switch (Convert.ToString(tag))
                     {
                         case "Разделы":
                             contextMenuStripUnit.Show(navigation, p);
@@ -114,6 +137,79 @@ namespace CourseWork5
                     }
                 }
             }
+        }
+
+        private void linkLabelAddNewElemen_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            QuestionEditer questionEditer = new QuestionEditer();
+            questionEditer.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void новыйРазделToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            UnitEditer unitEditer = new UnitEditer(this);
+            unitEditer.Show();
+        }
+
+        private void изменитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            QuestionEditer questionEditer = new QuestionEditer();
+            questionEditer.Show();
+        }
+
+        private void изменитьРазделToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(navigation.SelectedNode.Tag.ToString().Split(' ')[1]);
+            UnitEditer unitEditer = new UnitEditer(this, id);
+            unitEditer.Show();
+        }
+
+        private void добавитьНовуюКонтрольнуюToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TestEditer testEditer = new TestEditer();
+            testEditer.Show();
+        }
+
+        private void добавитьВопросToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            QuestionEditer questionEditer = new QuestionEditer();
+            questionEditer.Show();
+        }
+
+        private void удалиьРазделToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(navigation.SelectedNode.Tag.ToString().Split(' ')[1]);
+            var sqlCmd = new SqlCommand("delete_unit", cnn);
+            sqlCmd.CommandType = CommandType.StoredProcedure;
+            sqlCmd.Parameters.Clear();
+            sqlCmd.Parameters.AddWithValue("@id", id);
+            try
+            {
+                sqlCmd.ExecuteNonQuery();
+                SetAllUnit();
+            }
+            catch (Exception exeption)
+            {
+                MessageBox.Show("Ошибка при удалении", exeption.Message,
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void новыйРазделToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UnitEditer unitEditer = new UnitEditer(this);
+            unitEditer.Show();
+        }
+
+        private void списокToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            navigation.CollapseAll();
+            navigation.Nodes[0].Expand();
         }
     }
 }
