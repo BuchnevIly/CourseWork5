@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{025C7F54-19DF-4184-AFB7-E2410287B1B0}</ProjectGuid>
+    <ProjectGuid>{7D32BF61-DE3C-4EFD-A3D8-6632701B0B4A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CourseWork5</RootNamespace>
-    <AssemblyName>CourseWork5</AssemblyName>
+    <RootNamespace>TeacherPanel</RootNamespace>
+    <AssemblyName>TeacherPanel</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,84 +47,76 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Answer.cs" />
-    <Compile Include="Entity.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="AnswerEditer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="AnswerEditer.Designer.cs">
+      <DependentUpon>AnswerEditer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Group.cs" />
-    <Compile Include="GroupEditer.cs">
+    <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GroupEditer.Designer.cs">
-      <DependentUpon>GroupEditer.cs</DependentUpon>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="IEntity.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Question.cs" />
     <Compile Include="QuestionEditer.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="QuestionEditer.Designer.cs">
       <DependentUpon>QuestionEditer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Statistic.cs">
+    <Compile Include="QuestionsPanel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Statistic.Designer.cs">
-      <DependentUpon>Statistic.cs</DependentUpon>
+    <Compile Include="QuestionsPanel.Designer.cs">
+      <DependentUpon>QuestionsPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Student.cs" />
-    <Compile Include="StudentsAnswer.cs" />
-    <Compile Include="Teacher.cs" />
-    <Compile Include="Test.cs" />
+    <Compile Include="StartWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StartWindow.Designer.cs">
+      <DependentUpon>StartWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="TestEditer.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="TestEditer.Designer.cs">
       <DependentUpon>TestEditer.cs</DependentUpon>
     </Compile>
-    <Compile Include="TestQuestion.cs" />
-    <Compile Include="TestResults.cs">
+    <Compile Include="TestPanel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TestResults.Designer.cs">
-      <DependentUpon>TestResults.cs</DependentUpon>
+    <Compile Include="TestPanel.Designer.cs">
+      <DependentUpon>TestPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="TestSystemDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TestSystemDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="TypeQuestion.cs" />
-    <Compile Include="Unit.cs" />
     <Compile Include="UnitEditer.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UnitEditer.Designer.cs">
       <DependentUpon>UnitEditer.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserEditer.cs">
+    <Compile Include="UnitPanel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UserEditer.Designer.cs">
-      <DependentUpon>UserEditer.cs</DependentUpon>
+    <Compile Include="UnitPanel.Designer.cs">
+      <DependentUpon>UnitPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="WebView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="WebView.Designer.cs">
-      <DependentUpon>WebView.cs</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="AnswerEditer.resx">
+      <DependentUpon>AnswerEditer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GroupEditer.resx">
-      <DependentUpon>GroupEditer.cs</DependentUpon>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -137,23 +130,23 @@
     <EmbeddedResource Include="QuestionEditer.resx">
       <DependentUpon>QuestionEditer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Statistic.resx">
-      <DependentUpon>Statistic.cs</DependentUpon>
+    <EmbeddedResource Include="QuestionsPanel.resx">
+      <DependentUpon>QuestionsPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StartWindow.resx">
+      <DependentUpon>StartWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TestEditer.resx">
       <DependentUpon>TestEditer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TestResults.resx">
-      <DependentUpon>TestResults.cs</DependentUpon>
+    <EmbeddedResource Include="TestPanel.resx">
+      <DependentUpon>TestPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UnitEditer.resx">
       <DependentUpon>UnitEditer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserEditer.resx">
-      <DependentUpon>UserEditer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="WebView.resx">
-      <DependentUpon>WebView.cs</DependentUpon>
+    <EmbeddedResource Include="UnitPanel.resx">
+      <DependentUpon>UnitPanel.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -164,20 +157,15 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="TestSystemDataSet.xsc">
-      <DependentUpon>TestSystemDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="TestSystemDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>TestSystemDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="TestSystemDataSet.xss">
-      <DependentUpon>TestSystemDataSet.xsd</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\model\Model.csproj">
+      <Project>{78556218-6108-4693-99c4-85080f11531c}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

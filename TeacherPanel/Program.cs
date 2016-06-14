@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Diagnostics;
 
-namespace CourseWork5
+namespace TeacherPanel
 {
     static class Program
     {
@@ -15,11 +14,10 @@ namespace CourseWork5
         [STAThread]
         static void Main()
         {
-            Entity.Connect();
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TeacherPanel());
+            Application.Run(new StartWindow());
+            Application.Run(new Login());
         }
     }
 }

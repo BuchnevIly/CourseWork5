@@ -18,31 +18,21 @@ namespace CourseWork5
         public TeacherPanel()
         {
             InitializeComponent();
-
-            string connetionString = "Data Source=DESKTOP-RD3DFVB;Initial Catalog=TestSystem;Integrated Security=True";
-            cnn = new SqlConnection(connetionString);
-            cnn.Open();
         }
 
         // -- Добавление списка разделов
         public void SetAllUnit()
         {
-            var sqlCmd = new SqlCommand("get_all_unit", cnn);
-            sqlCmd.CommandType = CommandType.StoredProcedure;
-            SqlDataReader dataReader = sqlCmd.ExecuteReader();
+            List<Unit> listUnit = Unit.GetAll();
 
             navigation.Nodes[0].Nodes.Clear();
-
-            while (dataReader.Read())
+            foreach(var item in listUnit)
             {
-                int id = (int)dataReader.GetValue(0);
-                string unitName = dataReader.GetValue(1).ToString();
-                TreeNode childNodeUnit = new TreeNode(unitName);
-                childNodeUnit.Tag = "Список_разделов " + id;
+                TreeNode childNodeUnit = new TreeNode(item.Name);
+                childNodeUnit.Tag = "Список_разделов " + item.Id;
                 navigation.Nodes[0].Nodes.Add(childNodeUnit);
             }
 
-            dataReader.Close();
         }
 
 
@@ -158,7 +148,8 @@ namespace CourseWork5
 
         private void изменитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            QuestionEditer questionEditer = new QuestionEditer();
+            int id = Convert.ToInt32(navigation.SelectedNode.Tag.ToString().Split(' ')[1]);
+            QuestionEditer questionEditer = new QuestionEditer(id);
             questionEditer.Show();
         }
 
@@ -177,7 +168,8 @@ namespace CourseWork5
 
         private void добавитьВопросToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            QuestionEditer questionEditer = new QuestionEditer();
+            int id = Convert.ToInt32(navigation.SelectedNode.Tag.ToString().Split(' ')[1]);
+            QuestionEditer questionEditer = new QuestionEditer(id);
             questionEditer.Show();
         }
 

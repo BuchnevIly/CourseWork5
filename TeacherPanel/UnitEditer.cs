@@ -1,42 +1,48 @@
 ﻿using System;
 using System.Windows.Forms;
+using Model;
 
-namespace CourseWork5
+namespace TeacherPanel
 {
     public partial class UnitEditer : Form
     {
-        private Form parentForm;
+        private readonly Form _parentForm;
 
-        private Unit unit;
+        private readonly Unit _unit;
 
-        private bool isSave = true;
+        private readonly bool _isSave = true;
 
-        public UnitEditer(Form parentForm, int id = -1)
+        public UnitEditer(Form parentForm = null, int id = -1)
         {
-            this.parentForm = parentForm;
+            
             InitializeComponent();
-            unit = new Unit();
+            _unit = new Unit();
+            _parentForm = parentForm;
 
-            tbNameUnit.DataBindings.Add("Text", unit, "Name", false, DataSourceUpdateMode.OnPropertyChanged);
+            tbNameUnit.DataBindings.Add("Text", _unit, "Name");
 
             if (id == -1)
                 return;
 
-            isSave = false;
             buttonAddSave.Text = "Изменить";
             buttonDelete.Visible = true;
-            unit.Id = id;
-            unit.Load();
+
+            _isSave = false;
+            _unit.Id = id;
+            _unit.Load();
         }
 
         private void buttonAddSave_Click(object sender, EventArgs e)
         {
             try
             {
-                if (isSave)
-                    unit.Save();
+                if (_isSave)
+                    _unit.Save();
                 else
-                    unit.Update();
+                    _unit.Update();
+
+                ((UnitPanel)_parentForm).UpdateList();
+                Close();
             }catch (Exception exeption)
             {
                 labelError.Text = exeption.Message;
