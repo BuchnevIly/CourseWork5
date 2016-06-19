@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Model
 {
     public class TestQuestion : Entity, IEntity
     {
-        public int Id { get; set; } = 0;
+        public int Id { get; set; } 
 
         public Question Question { get; set; }
 
@@ -20,7 +16,8 @@ namespace Model
 
         public void Load()
         {
-            if (Id == 0) return;
+            if (Id == 0)
+                return;
             var sqlCmd = new SqlCommand("load_test_question", cnn) {CommandType = CommandType.StoredProcedure};
             var dataReader = sqlCmd.ExecuteReader();
 
@@ -56,13 +53,11 @@ namespace Model
             sqlCmd.ExecuteNonQuery();
 
             Id = (int)retval.Value;
-            sqlCmd.ExecuteNonQuery();
         }
 
         public void Update()
         {
-            var sqlCmd = new SqlCommand("update_test_question", cnn);
-            sqlCmd.CommandType = CommandType.StoredProcedure;
+            var sqlCmd = new SqlCommand("update_test_question", cnn) {CommandType = CommandType.StoredProcedure};
             sqlCmd.Parameters.Clear();
             sqlCmd.Parameters.AddWithValue("@id_question", Question.Id);
             sqlCmd.Parameters.AddWithValue("@id_teacher", IdTeacher);
@@ -71,28 +66,31 @@ namespace Model
             sqlCmd.ExecuteNonQuery();
         }
 
-        public List<TestQuestion> GetAll()
+        public void Delete()
         {
-            var sqlCmd = new SqlCommand("get_all_test_question", cnn);
-            sqlCmd.CommandType = CommandType.StoredProcedure;
-            SqlDataReader dataReader = sqlCmd.ExecuteReader();
+            var sqlCmd = new SqlCommand("delete_test_question", cnn) { CommandType = CommandType.StoredProcedure };
+            sqlCmd.Parameters.AddWithValue("@id_test_question", Id);
+            sqlCmd.ExecuteNonQuery();
+        }
 
-            List<TestQuestion> list = new List<TestQuestion>();
+        public static List<TestQuestion> GetAll()
+        {
+            var sqlCmd = new SqlCommand("get_all_test_question", cnn) {CommandType = CommandType.StoredProcedure};
+            var dataReader = sqlCmd.ExecuteReader();
+
+            var list = new List<TestQuestion>();
 
             while (dataReader.Read())
             {
-                TestQuestion testQuestion = new TestQuestion();
-
-                Id = (int)dataReader.GetValue(0);
-
-                Question question = new Question();
-                question.Id = (int)dataReader.GetValue(2);
+                var question = new Question { Id = (int)dataReader.GetValue(2) };
                 question.Load();
-                Question = question;
-
-                IdTeacher = (int)dataReader.GetValue(3);
-                IdTest = (int)dataReader.GetValue(1);
-
+                var testQuestion = new TestQuestion
+                {
+                    Id = (int)dataReader.GetValue(0),
+                    Question = question,
+                    IdTeacher = (int)dataReader.GetValue(3),
+                    IdTest = (int)dataReader.GetValue(1)
+                };
                 list.Add(testQuestion);
             }
             dataReader.Close();

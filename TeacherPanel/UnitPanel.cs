@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Model;
 
@@ -18,14 +12,12 @@ namespace TeacherPanel
         public UnitPanel()
         {
             InitializeComponent();
-
             UpdateList();
-
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            var unitEditer = new UnitEditer(this);
+            var unitEditer = new UnitEditer();
             unitEditer.ShowDialog();
         }
 
@@ -40,7 +32,7 @@ namespace TeacherPanel
             {
                 listView.Items.Add(Convert.ToString(i + 1));
                 listView.Items[i].SubItems.Add(unit.Name);
-                listView.Items[i].SubItems.Add(Convert.ToString(unit.Questions.Count));
+                listView.Items[i].SubItems.Add(Convert.ToString(unit.GetQuestions().Count));
                 i++;
             }
         }
@@ -50,13 +42,15 @@ namespace TeacherPanel
             try
             {
                 var index = listView.SelectedIndices[0];
-                var questionPanel = new QuestionsPanel(this, _units[index].Id);
+                var questionPanel = new QuestionsPanel(_units[index]);
                 questionPanel.ShowDialog();
             }
-            catch (Exception)
+            catch (ArgumentOutOfRangeException )
             {
-                var questionPanel = new QuestionsPanel(this);
-                questionPanel.ShowDialog();
+                var questionPanel = new QuestionsPanel();
+                var dialogResult = questionPanel.ShowDialog();
+                if (dialogResult == DialogResult.OK)
+                    UpdateList();
             }
         }
 
@@ -65,12 +59,14 @@ namespace TeacherPanel
             try
             {
                 var index = listView.SelectedIndices[0];
-                var unitEditer = new UnitEditer(this, _units[index].Id);
-                unitEditer.ShowDialog();
+                var unitEditer = new UnitEditer(_units[index]);
+                var dialogResult = unitEditer.ShowDialog();
+                if (dialogResult == DialogResult.OK)
+                    UpdateList();
             }
-            catch (Exception)
+            catch (ArgumentOutOfRangeException )
             {
-                MessageBox.Show("Выделите нужный раздел!", "Ошибка");
+                MessageBox.Show(@"Выделите нужный раздел!", @"Ошибка");
             }
         }
     }

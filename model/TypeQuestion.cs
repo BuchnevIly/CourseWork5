@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Model
 {
     public class TypeQuestion : Entity, IEntity
     {
-        public int Id { get; set; } = 0;
+        public int Id { get; set; }
 
         public string Name { get; set; }
 
@@ -21,13 +18,11 @@ namespace Model
 
 
             var sqlCmd = new SqlCommand("load_type_question", cnn) { CommandType = CommandType.StoredProcedure };
-            sqlCmd.Parameters.AddWithValue("@id", Id);
+            sqlCmd.Parameters.AddWithValue("@id_type_question", Id);
             var dataReader = sqlCmd.ExecuteReader();
 
             dataReader.Read();
-
             Name = dataReader.GetValue(1).ToString();
-
             dataReader.Close();
         }
 
@@ -57,6 +52,11 @@ namespace Model
         }
 
         public void Update()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete()
         {
             throw new NotImplementedException();
         }

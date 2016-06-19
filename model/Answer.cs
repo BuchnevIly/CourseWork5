@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -10,9 +6,9 @@ namespace Model
 {
     public class Answer : Entity , IEntity
     {
-        public int Id { get; set; } = 0;
+        public int Id { get; set; }
 
-        public int IdQuestion { get; set; } = 0;
+        public int IdQuestion { get; set; }
 
         public string TextAnswer { get; set; }
 
@@ -20,7 +16,7 @@ namespace Model
 
         public void Load()
         {
-            if (Id == -1)
+            if (Id == 0)
                 return;
 
             var sqlCmd = new SqlCommand("load_answer", cnn) {CommandType = CommandType.StoredProcedure};
@@ -48,6 +44,7 @@ namespace Model
                 ParameterName = "@id_answer",
                 SqlDbType = SqlDbType.Int
             };
+
             sqlCmd.Parameters.Add(retval);
             sqlCmd.ExecuteNonQuery();
 
@@ -61,6 +58,13 @@ namespace Model
             sqlCmd.Parameters.AddWithValue("@id_question", IdQuestion);
             sqlCmd.Parameters.AddWithValue("@text_answer", TextAnswer);
             sqlCmd.Parameters.AddWithValue("@true_answer", TrueAnswer);
+            sqlCmd.ExecuteNonQuery();
+        }
+
+        public void Delete()
+        {
+            var sqlCmd = new SqlCommand("delete_answer", cnn) { CommandType = CommandType.StoredProcedure };
+            sqlCmd.Parameters.AddWithValue("@id_answer", Id);
             sqlCmd.ExecuteNonQuery();
         }
 

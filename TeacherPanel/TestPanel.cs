@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Model;
 
@@ -31,8 +25,8 @@ namespace TeacherPanel
             {
                 listView.Items.Add(Convert.ToString(i + 1));
                 listView.Items[i].SubItems.Add(x.Name);
-                listView.Items[i].SubItems.Add(x.TestData.ToString("dd.MM.yy"));
-                listView.Items[i].SubItems.Add(Convert.ToString(x.TestQuestions.Count));
+                listView.Items[i].SubItems.Add(x.TestDataStart.ToString("dd.MM.yy"));
+                listView.Items[i].SubItems.Add(Convert.ToString(x.GetTestQuestions().Count));
                 i++;
             });
         }
@@ -45,7 +39,17 @@ namespace TeacherPanel
 
         private void buttonOpen_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                var test = _tests[listView.SelectedIndices[0]];
+                var testEditer = new TestEditer(test);
+                testEditer.ShowDialog();
+            }
+            catch (ArgumentOutOfRangeException )
+            {
+                MessageBox.Show(@"Выделите нужную контрольную!", @"Ошибка");
+            }
+            
         }
     }
 }

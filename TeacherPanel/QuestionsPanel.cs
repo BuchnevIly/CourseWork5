@@ -1,12 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Text;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Model;
 
@@ -14,28 +8,28 @@ namespace TeacherPanel
 {
     public partial class QuestionsPanel : Form
     {
-        private Form _parentForm;
-
         private List<Question> _questions;
 
-        public QuestionsPanel(Form parentForm = null, int idUnit = 0)
+        public QuestionsPanel(Unit unit = null)
         {
             InitializeComponent();
-            _parentForm = parentForm;
 
             TypeQuestion.GetAll().ForEach(x => comboBoxQuestionType.Items.Add(x));
             Unit.GetAll().ForEach(x => comboBoxUnit.Items.Add(x));
 
             comboBoxQuestionType.SelectedIndex = 0;
 
-            if (comboBoxUnit.Items.Count == 0) return;
-            comboBoxUnit.SelectedIndex = 0;
+            if (comboBoxUnit.Items.Count != 0) 
+                comboBoxUnit.SelectedIndex = 0;
 
-            if (idUnit == 0) return;
+            if (unit == null)
+                return;
+
             var index = 0;
             for (var i = 0; i < comboBoxUnit.Items.Count; i++)
-                if (((Unit)comboBoxUnit.Items[i]).Id == idUnit)
+                if (((Unit)comboBoxUnit.Items[i]).Id == unit.Id)
                     index = i;
+
             comboBoxUnit.SelectedIndex = index;
             UpdateList();
 
@@ -50,7 +44,7 @@ namespace TeacherPanel
             var selectedType = ((TypeQuestion) comboBoxQuestionType.SelectedItem).Id;
 
             _questions = Question.GetAll()
-                .Where(x => x.IdUnit == selectedUnit && x.Type.Id == selectedType).ToList();
+                .Where(x => x.Unit.Id == selectedUnit && x.Type.Id == selectedType).ToList();
 
 
             var i = 0;
@@ -58,7 +52,7 @@ namespace TeacherPanel
             {
                 listView1.Items.Add(Convert.ToString(i + 1));
                 listView1.Items[i].SubItems.Add(item.TextQuestion);
-                var unit = new Unit {Id = item.IdUnit};
+                var unit = new Unit {Id = item.Unit.Id};
                 unit.Load();
                 listView1.Items[i].SubItems.Add(unit.Name);
                 listView1.Items[i].SubItems.Add(item.Type.Name);
@@ -69,7 +63,9 @@ namespace TeacherPanel
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             var questionEditer = new QuestionEditer();
-            questionEditer.ShowDialog();
+            var dialogResult = questionEditer.ShowDialog();
+            if (dialogResult == DialogResult.OK)
+                UpdateList();
         }
 
         private void comboBoxUnit_SelectedIndexChanged(object sender, EventArgs e)
@@ -87,12 +83,14 @@ namespace TeacherPanel
             try
             {
                 var index = listView1.SelectedIndices[0];
-                var questionEditer = new QuestionEditer(_questions[index], this);
-                questionEditer.ShowDialog();
+                var questionEditer = new QuestionEditer(_questions[index]);
+                var dialogResult = questionEditer.ShowDialog();
+                if (dialogResult == DialogResult.OK)
+                    UpdateList();
             }
-            catch (Exception)
+            catch (ArgumentOutOfRangeException )
             {
-                MessageBox.Show("Выделите нужный вапрос!", "Ошибка");
+                MessageBox.Show(@"Выделите нужный вапрос!", @"Ошибка");
             }
         }
     }

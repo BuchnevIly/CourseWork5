@@ -3,20 +3,21 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Model
 {
     public class Test : Entity , IEntity
     {
-        public int Id { get; set; } = 0;
+
+
+        public int Id { get; set; }
 
         public string Name { get; set; }
 
-        public DateTime TestData { get; set; }
+        public DateTime TestDataStart { get; set; }
 
-        public List<TestQuestion> TestQuestions { get; set; }
+        public DateTime TestDataEnd { get; set; }
+
 
         public void Load()
         {
@@ -30,17 +31,17 @@ namespace Model
 
             Id = (int)dataReader.GetValue(0);
             Name = dataReader.GetValue(1).ToString();
-            TestData = (DateTime)dataReader.GetValue(3);
+            TestDataStart = (DateTime)dataReader.GetValue(3);
+            TestDataEnd = (DateTime)dataReader.GetValue(4);
             dataReader.Close();
-
-            GetTestQuestions();
         }
 
         public void Save()
         {
             var sqlCmd = new SqlCommand("add_new_test", cnn) {CommandType = CommandType.StoredProcedure};
             sqlCmd.Parameters.AddWithValue("@name", Name);
-            sqlCmd.Parameters.AddWithValue("@test_date", TestData);
+            sqlCmd.Parameters.AddWithValue("@test_date_start", TestDataStart);
+            sqlCmd.Parameters.AddWithValue("@test_date_end", TestDataEnd);
 
             var retval = new SqlParameter
             {
@@ -64,8 +65,16 @@ namespace Model
 
             sqlCmd.Parameters.AddWithValue("@id_test", Id);
             sqlCmd.Parameters.AddWithValue("@name", Name);
-            sqlCmd.Parameters.AddWithValue("@test_date", TestData);
+            sqlCmd.Parameters.AddWithValue("@test_date_start", TestDataStart);
+            sqlCmd.Parameters.AddWithValue("@test_date_end", TestDataEnd);
 
+            sqlCmd.ExecuteNonQuery();
+        }
+
+        public void Delete()
+        {
+            var sqlCmd = new SqlCommand("delete_test", cnn) { CommandType = CommandType.StoredProcedure };
+            sqlCmd.Parameters.AddWithValue("@id_test", Id);
             sqlCmd.ExecuteNonQuery();
         }
 
@@ -81,7 +90,8 @@ namespace Model
                 {
                     Id = (int) dataReader.GetValue(0),
                     Name = dataReader.GetValue(1).ToString(),
-                    TestData = (DateTime) dataReader.GetValue(3)
+                    TestDataStart = (DateTime) dataReader.GetValue(2),
+                    TestDataEnd = (DateTime) dataReader.GetValue(3)
                 };
                 list.Add(test);
             }
@@ -93,10 +103,9 @@ namespace Model
             return list;
         }
 
-        private void GetTestQuestions()
+        public List<TestQuestion> GetTestQuestions()
         {
-            var testQuestion = new TestQuestion();
-            TestQuestions = testQuestion.GetAll().Where(x => x.IdTest == Id).ToList();
+            return TestQuestion.GetAll().Where(x => x.IdTest == Id).ToList();
         }
     }
 }

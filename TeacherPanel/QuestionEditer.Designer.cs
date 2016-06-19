@@ -30,8 +30,7 @@
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.textBoxQuestion = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.buttonOpenFile = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -49,21 +48,25 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button5 = new System.Windows.Forms.Button();
             this.buttonSaveQuestion = new System.Windows.Forms.Button();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.buttonClear = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.buttonClear);
+            this.groupBox2.Controls.Add(this.pictureBox);
             this.groupBox2.Controls.Add(this.textBoxQuestion);
-            this.groupBox2.Controls.Add(this.button1);
-            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Controls.Add(this.buttonOpenFile);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Location = new System.Drawing.Point(10, 104);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(345, 166);
+            this.groupBox2.Size = new System.Drawing.Size(345, 293);
             this.groupBox2.TabIndex = 23;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Вопрос";
@@ -76,21 +79,15 @@
             this.textBoxQuestion.Size = new System.Drawing.Size(310, 76);
             this.textBoxQuestion.TabIndex = 22;
             // 
-            // button1
+            // buttonOpenFile
             // 
-            this.button1.Location = new System.Drawing.Point(255, 134);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 20);
-            this.button1.TabIndex = 21;
-            this.button1.Text = "Обзор";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(20, 134);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(229, 20);
-            this.textBox1.TabIndex = 20;
+            this.buttonOpenFile.Location = new System.Drawing.Point(103, 120);
+            this.buttonOpenFile.Name = "buttonOpenFile";
+            this.buttonOpenFile.Size = new System.Drawing.Size(75, 20);
+            this.buttonOpenFile.TabIndex = 21;
+            this.buttonOpenFile.Text = "Обзор";
+            this.buttonOpenFile.UseVisualStyleBackColor = true;
+            this.buttonOpenFile.Click += new System.EventHandler(this.buttonOpenFile_Click);
             // 
             // label4
             // 
@@ -106,7 +103,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(17, 117);
+            this.label3.Location = new System.Drawing.Point(17, 124);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(80, 13);
             this.label3.TabIndex = 19;
@@ -233,7 +230,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(10, 280);
+            this.button5.Location = new System.Drawing.Point(265, 404);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 23);
             this.button5.TabIndex = 5;
@@ -242,7 +239,7 @@
             // 
             // buttonSaveQuestion
             // 
-            this.buttonSaveQuestion.Location = new System.Drawing.Point(91, 280);
+            this.buttonSaveQuestion.Location = new System.Drawing.Point(180, 404);
             this.buttonSaveQuestion.Name = "buttonSaveQuestion";
             this.buttonSaveQuestion.Size = new System.Drawing.Size(75, 23);
             this.buttonSaveQuestion.TabIndex = 4;
@@ -250,11 +247,30 @@
             this.buttonSaveQuestion.UseVisualStyleBackColor = true;
             this.buttonSaveQuestion.Click += new System.EventHandler(this.buttonSaveQuestion_Click);
             // 
+            // pictureBox
+            // 
+            this.pictureBox.Location = new System.Drawing.Point(20, 146);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(310, 141);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox.TabIndex = 23;
+            this.pictureBox.TabStop = false;
+            // 
+            // buttonClear
+            // 
+            this.buttonClear.Location = new System.Drawing.Point(184, 120);
+            this.buttonClear.Name = "buttonClear";
+            this.buttonClear.Size = new System.Drawing.Size(75, 20);
+            this.buttonClear.TabIndex = 24;
+            this.buttonClear.Text = "Очистить";
+            this.buttonClear.UseVisualStyleBackColor = true;
+            this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
+            // 
             // QuestionEditer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(749, 315);
+            this.ClientSize = new System.Drawing.Size(749, 439);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.buttonSaveQuestion);
             this.Controls.Add(this.groupBox3);
@@ -267,6 +283,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -274,8 +291,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button buttonOpenFile;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -294,5 +310,7 @@
         private System.Windows.Forms.TextBox textBoxQuestion;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button buttonSaveQuestion;
+        private System.Windows.Forms.PictureBox pictureBox;
+        private System.Windows.Forms.Button buttonClear;
     }
 }

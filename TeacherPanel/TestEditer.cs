@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Model;
 
@@ -17,42 +11,36 @@ namespace TeacherPanel
 
         private readonly List<Question> _testQuestions;
 
-        private TestPanel _parentForm;
-
-        private Test _test;
-
-        public TestEditer(Form parentForm = null, Test test = null)
+        public TestEditer( Test test = null)
         {
             InitializeComponent();
 
             _allQuestions = Question.GetAll();
 
-            _parentForm = (TestPanel)parentForm;
+            _testQuestions = new List<Question>();
 
             if (test != null)
             {
                 textBoxName.Text = test.Name;
-                timePickerStart.Value = test.TestData;
-                datePickerStart.Value = test.TestData; timePickerStart.Value = test.TestData;
-                test.TestQuestions.ForEach(x => _testQuestions.Add(x.Question));
+                timePickerStart.Value = test.TestDataStart;
+                datePickerStart.Value = test.TestDataStart;
+                timePickerEnd.Value = test.TestDataEnd;
+                timePickerEnd.Value = test.TestDataEnd;
+                test.GetTestQuestions().ForEach(x => _testQuestions.Add(x.Question));
                 _testQuestions.ForEach(x =>
                 {
-                    var index =_allQuestions.FindIndex((y) => y.Id == x.Id);
+                    var index = _allQuestions.FindIndex((y) => y.Id == x.Id);
                     _allQuestions.RemoveAt(index);
                 });
-                UpdateLists();
-                return;
             }
-
-            _testQuestions = new List<Question>();
             UpdateLists();
 
         }
 
         public void UpdateLists()
         {
-            _allQuestions.Sort((x, y) => x.IdUnit.CompareTo(y.IdUnit));
-            _testQuestions.Sort((x, y) => x.IdUnit.CompareTo(y.IdUnit));
+            _allQuestions.Sort((x, y) => x.Unit.Id.CompareTo(y.Unit.Id));
+            _testQuestions.Sort((x, y) => x.Unit.Id.CompareTo(y.Unit.Id));
 
             listViewAllQueston.Items.Clear();
             var i = 0;
@@ -61,7 +49,7 @@ namespace TeacherPanel
                 listViewAllQueston.Items.Add(Convert.ToString(i + 1));
                 listViewAllQueston.Items[i].SubItems.Add(x.TextQuestion);
 
-                var unit = new Unit {Id = x.IdUnit};
+                var unit = new Unit {Id = x.Unit.Id };
                 unit.Load();
 
                 listViewAllQueston.Items[i].SubItems.Add(unit.Name);
@@ -76,7 +64,7 @@ namespace TeacherPanel
                 listViewTestQuestion.Items.Add(Convert.ToString(i + 1));
                 listViewTestQuestion.Items[i].SubItems.Add(x.TextQuestion);
 
-                var unit = new Unit { Id = x.IdUnit };
+                var unit = new Unit { Id = x.Unit.Id };
                 unit.Load();
 
                 listViewTestQuestion.Items[i].SubItems.Add(unit.Name);
@@ -100,9 +88,9 @@ namespace TeacherPanel
                 for (var i = listViewAllQueston.SelectedIndices.Count - 1; i >= 0; i--)
                     _allQuestions.RemoveAt(listViewAllQueston.SelectedIndices[i]);
             }
-            catch (Exception)
+            catch (ArgumentOutOfRangeException )
             {
-                MessageBox.Show("Выделите нужный вапрос!", "Ошибка");
+                MessageBox.Show(@"Выделите нужный вапрос!", @"Ошибка");
             }
             UpdateLists();
         }
@@ -115,9 +103,9 @@ namespace TeacherPanel
                 var questionEditer = new QuestionEditer(question);
                 questionEditer.ShowDialog();
             }
-            catch (Exception)
+            catch (ArgumentOutOfRangeException )
             {
-                MessageBox.Show("Выделите нужный вапрос!", "Ошибка");
+                MessageBox.Show(@"Выделите нужный вапрос!", @"Ошибка");
             }
         }
 
@@ -135,13 +123,13 @@ namespace TeacherPanel
         {
             if (textBoxName.Text == "")
             {
-                MessageBox.Show("Ошибка", "Поле с названием не должно быть пустым!");
+                MessageBox.Show(@"Поле с названием не должно быть пустым!", @"Ошибка");
                 return;
             }
 
             if (_testQuestions.Count == 0)
             {
-                MessageBox.Show("Ошибка", "В контрольой не могут отсутствовать вопросы!");
+                MessageBox.Show(@"В контрольой не могут отсутствовать вопросы!", @"Ошибка");
                 return;
             }
 
@@ -155,11 +143,11 @@ namespace TeacherPanel
 
             if (startDateTime >= endDateTime)
             {
-                MessageBox.Show("Ошибка", "Начальная дата должна быть меньше конечной!");
+                MessageBox.Show(@"Начальная дата должна быть меньше конечной!", @"Ошибка");
                 return;
             }
 
-            var test = new Test {Name = textBoxName.Text, TestData = startDateTime};
+            var test = new Test {Name = textBoxName.Text, TestDataStart = startDateTime, TestDataEnd = endDateTime};
             test.Save();
 
             _testQuestions.ForEach(x =>
@@ -174,7 +162,8 @@ namespace TeacherPanel
                 testQuestion.Save();
             });
 
-            _parentForm.UpdateList();
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void buttonSetCurrentTime_Click(object sender, EventArgs e)

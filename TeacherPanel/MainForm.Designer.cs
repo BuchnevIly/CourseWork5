@@ -158,7 +158,6 @@
             this.Controls.Add(this.webBrowser1);
             this.Name = "MainForm";
             this.Text = "Панель управления преподавателя";
-            this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

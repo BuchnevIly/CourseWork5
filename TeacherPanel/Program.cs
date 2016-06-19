@@ -16,7 +16,8 @@ namespace TeacherPanel
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new StartWindow());
+            //Application.Run(new QuestionEditer());
+            //Application.Run(new StartWindow());
             Application.Run(new Login());
         }
     }

@@ -1,27 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Model
 {
     public class Group : Entity, IEntity
     {
-        public int Id { get; set; } = 0;
+        public int Id { get; set; }
 
         public string Name { get; set; }
 
-        public List<Student> students;
-
         public void Load()
         {
-            if (Id != 0)
+            if (Id == 0)
                 return;
-            var sqlCmd = new SqlCommand("load_group", cnn);
-            sqlCmd.CommandType = CommandType.StoredProcedure;
+            var sqlCmd = new SqlCommand("load_group", cnn) {CommandType = CommandType.StoredProcedure};
             sqlCmd.Parameters.Clear();
             sqlCmd.Parameters.AddWithValue("@id_group", Id);
             SqlDataReader dataReader = sqlCmd.ExecuteReader();
@@ -58,38 +52,42 @@ namespace Model
 
         public void Update()
         {
-            var sqlCmd = new SqlCommand("update_group", cnn);
-            sqlCmd.CommandType = CommandType.StoredProcedure;
+            var sqlCmd = new SqlCommand("update_group", cnn) {CommandType = CommandType.StoredProcedure};
             sqlCmd.Parameters.Clear();
             sqlCmd.Parameters.AddWithValue("@id_group", Id);
             sqlCmd.Parameters.AddWithValue("@name", Name);
             sqlCmd.ExecuteNonQuery();
         }
 
+        public void Delete()
+        {
+            var sqlCmd = new SqlCommand("delete_group", cnn) { CommandType = CommandType.StoredProcedure };
+            sqlCmd.Parameters.AddWithValue("@id_group", Id);
+            sqlCmd.ExecuteNonQuery();
+        }
+
         public List<Group> GetAll()
         {
-            var sqlCmd = new SqlCommand("get_all_group", cnn);
-            sqlCmd.CommandType = CommandType.StoredProcedure;
-            SqlDataReader dataReader = sqlCmd.ExecuteReader();
-
-            List<Group> list = new List<Group>();
+            var sqlCmd = new SqlCommand("get_all_group", cnn) {CommandType = CommandType.StoredProcedure};
+            var dataReader = sqlCmd.ExecuteReader();
+            var list = new List<Group>();
 
             while (dataReader.Read())
             {
-                Group group = new Group();
-                group.Id = (int)dataReader.GetValue(0);
-                group.Name = dataReader.GetValue(1).ToString();
-
+                var group = new Group
+                {
+                    Id = (int) dataReader.GetValue(0),
+                    Name = dataReader.GetValue(1).ToString()
+                };
                 list.Add(group);
             }
             dataReader.Close();
             return list;
         }
 
-        private void GetStudents()
+        public List<Student> GetStudents()
         {
-            Student student = new Student();
-            students = student.GetAll().Where(x => x.Group.Id == Id).ToList();
+            return Student.GetAll().Where(x => x.Group.Id == Id).ToList();
         }
     }
 }

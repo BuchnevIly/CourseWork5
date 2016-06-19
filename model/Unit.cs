@@ -12,7 +12,10 @@ namespace Model
 
         public string Name { get; set; }
 
-        public List<Question> Questions;
+        public List<Question> GetQuestions()
+        {
+            return Question.GetAll().Where(x => x.Unit.Id == Id).ToList();
+        }
 
         public void Load()
         {
@@ -20,15 +23,12 @@ namespace Model
                 return;
 
             var sqlCmd = new SqlCommand("load_unit", cnn) {CommandType = CommandType.StoredProcedure};
-            sqlCmd.Parameters.AddWithValue("@id", Id);
+            sqlCmd.Parameters.AddWithValue("@id_unit", Id);
 
             var dataReader = sqlCmd.ExecuteReader();
             dataReader.Read();
             Name = dataReader.GetValue(1).ToString();
             dataReader.Close();
-
-            GetQuestion();
-
         }
 
         public void Save()
@@ -36,15 +36,32 @@ namespace Model
             var sqlCmd = new SqlCommand("add_new_unit", cnn) {CommandType = CommandType.StoredProcedure};
             sqlCmd.Parameters.Clear();
             sqlCmd.Parameters.AddWithValue("@name", Name);
+            var retval = new SqlParameter
+            {
+                Direction = ParameterDirection.Output,
+                ParameterName = "@id_unit",
+                SqlDbType = SqlDbType.Int
+            };
+            sqlCmd.Parameters.Add(retval);
             sqlCmd.ExecuteNonQuery();
+
+            Id = (int)retval.Value;
         }
 
         public void Update()
         {
             var sqlCmd = new SqlCommand("update_unit", cnn) {CommandType = CommandType.StoredProcedure};
             sqlCmd.Parameters.Clear();
-            sqlCmd.Parameters.AddWithValue("@id", Id);
+            sqlCmd.Parameters.AddWithValue("@id_unit", Id);
             sqlCmd.Parameters.AddWithValue("@name", Name);
+            sqlCmd.ExecuteNonQuery();
+        }
+
+        public void Delete()
+        {
+            var sqlCmd = new SqlCommand("delete_unit", cnn) { CommandType = CommandType.StoredProcedure };
+            sqlCmd.Parameters.Clear();
+            sqlCmd.Parameters.AddWithValue("@id_unit", Id);
             sqlCmd.ExecuteNonQuery();
         }
 
@@ -66,14 +83,7 @@ namespace Model
             }
 
             dataReader.Close();
-
-            list.ForEach(x => x.GetQuestion());
             return list;
-        }
-
-        private void GetQuestion()
-        {
-            Questions = Question.GetAll().Where(x => x.IdUnit == Id).ToList();
         }
 
         public override string ToString()

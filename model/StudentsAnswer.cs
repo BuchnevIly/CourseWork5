@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Model
 {
     public class StudentsAnswer : Entity, IEntity
     {
-        public int Id { get; set; } = 0;
+        public int Id { get; set; }
 
         public TestQuestion TestQuestion { get; set; }
 
@@ -18,38 +15,32 @@ namespace Model
 
         public DateTime DateAnswer { get; set; }
 
+        public bool IsTrue;
+
         public void Load()
         {
             if (Id == 0)
                 return;
-            
-            var sqlCmd = new SqlCommand("get_student_answer", cnn);
-            sqlCmd.CommandType = CommandType.StoredProcedure;
-            SqlDataReader dataReader = sqlCmd.ExecuteReader();
+
+            var sqlCmd = new SqlCommand("get_student_answer", cnn) {CommandType = CommandType.StoredProcedure};
+            var dataReader = sqlCmd.ExecuteReader();
             dataReader.Read();
 
             Id = (int)dataReader.GetValue(0);
-
-            TestQuestion testQuestion = new TestQuestion();
-            testQuestion.Id = (int)dataReader.GetValue(1);
-            testQuestion.Load();
-            TestQuestion = testQuestion;
-
-            Student stutent = new Student();
-            stutent.Id = (int)dataReader.GetValue(2);
-            stutent.Load();
-            Student = stutent;
-
+            TestQuestion = new TestQuestion {Id = (int) dataReader.GetValue(1)};
+            Student = new Student {Id = (int) dataReader.GetValue(2)};
             DateAnswer = (DateTime)dataReader.GetValue(3);
-
+            IsTrue = (bool) dataReader.GetValue(4);
             dataReader.Close();
+
+            TestQuestion.Load();
+            Student.Load();
+
         }
 
         public void Save()
         {
-            var sqlCmd = new SqlCommand("add_new_student_answer", cnn);
-            sqlCmd.CommandType = CommandType.StoredProcedure;
-            sqlCmd.Parameters.Clear();
+            var sqlCmd = new SqlCommand("add_new_student_answer", cnn) {CommandType = CommandType.StoredProcedure};
             sqlCmd.Parameters.AddWithValue("@id_question", TestQuestion.Id);
             sqlCmd.Parameters.AddWithValue("@id_student", Student.Id);
             sqlCmd.Parameters.AddWithValue("@date_answer", DateAnswer);
@@ -71,45 +62,40 @@ namespace Model
 
         public void Update()
         {
-            var sqlCmd = new SqlCommand("update_student_answer", cnn);
-            sqlCmd.CommandType = CommandType.StoredProcedure;
-            sqlCmd.Parameters.Clear();
-            sqlCmd.Parameters.AddWithValue("@id_question", TestQuestion.Id);
-            sqlCmd.Parameters.AddWithValue("@id_student_answer", Id);
-            sqlCmd.Parameters.AddWithValue("@id_student", Student.Id);
-            sqlCmd.Parameters.AddWithValue("@date_answer", DateAnswer);
-            sqlCmd.ExecuteNonQuery();
+            throw new NotImplementedException();
+        }
+
+        public void Delete()
+        {
+            throw new NotImplementedException();
         }
 
         public List<StudentsAnswer> GetAll()
         {
-            List<StudentsAnswer> studentAnswers = new List<StudentsAnswer>();
+            var studentAnswers = new List<StudentsAnswer>();
 
-            var sqlCmd = new SqlCommand("get_student_answer", cnn);
-            sqlCmd.CommandType = CommandType.StoredProcedure;
-            SqlDataReader dataReader = sqlCmd.ExecuteReader();
-
+            var sqlCmd = new SqlCommand("get_student_answer", cnn) {CommandType = CommandType.StoredProcedure};
+            var dataReader = sqlCmd.ExecuteReader();
 
             while (dataReader.Read())
-            {              
-                TestQuestion testQuestion = new TestQuestion();
-                testQuestion.Id = (int)dataReader.GetValue(1);
-                testQuestion.Load();
-
-                Student stutent = new Student();
-                stutent.Id = (int)dataReader.GetValue(2);
-                stutent.Load();
-
-                StudentsAnswer studentsAnswer = new StudentsAnswer();
-                studentsAnswer.Id = (int)dataReader.GetValue(0);
-                studentsAnswer.TestQuestion = testQuestion;
-                studentsAnswer.Student = stutent;
-                studentsAnswer.DateAnswer = (DateTime)dataReader.GetValue(3);
-
+            {
+                var studentsAnswer = new StudentsAnswer
+                {
+                    Id = (int) dataReader.GetValue(0),
+                    TestQuestion = new TestQuestion {Id = (int) dataReader.GetValue(1)},
+                    Student = new Student {Id = (int) dataReader.GetValue(2)},
+                    DateAnswer = (DateTime) dataReader.GetValue(3),
+                    IsTrue = (bool) dataReader.GetValue(4)
+                };
                 studentAnswers.Add(studentsAnswer);
             }
-    
             dataReader.Close();
+            
+            studentAnswers.ForEach(x =>
+            {
+                x.Student.Load();
+                x.TestQuestion.Load();
+            });
             return studentAnswers;            
         }
     }

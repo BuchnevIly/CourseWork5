@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    interface IEntity
+    internal interface IEntity
     {
         void Save();
 
         void Load();
 
         void Update();
+
+        void Delete();
     }
 }

@@ -1,44 +1,44 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Model
 {
-    public class Student : Teacher, IEntity
+    public class Student : Entity, IEntity
     {
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public string LastName { get; set; }
+
+        public string Password { get; set; }
 
         public Group Group { get; set; }
 
-        public new void Load()
+        public void Load()
         {
-            if (Id != 0)
-            {
-                var sqlCmd = new SqlCommand("load_student", cnn);
-                sqlCmd.CommandType = CommandType.StoredProcedure;
-                SqlDataReader dataReader = sqlCmd.ExecuteReader();
+            if (Id == 0)
+                return;
 
-                dataReader.Read();
+            var sqlCmd = new SqlCommand("load_student", cnn) {CommandType = CommandType.StoredProcedure};
+            var dataReader = sqlCmd.ExecuteReader();
 
-                Id = (int)dataReader.GetValue(0);
-                Name = dataReader.GetValue(1).ToString();
-                LastName = dataReader.GetValue(2).ToString();
-                Group group = new Group();
-                group.Id = (int)dataReader.GetValue(3);
-                group.Load();
-                Group = group;
+            dataReader.Read();
 
-                dataReader.Close();
-            }
+            Id = (int)dataReader.GetValue(0);
+            Name = dataReader.GetValue(1).ToString();
+            LastName = dataReader.GetValue(2).ToString();
+            Group = new Group {Id = (int) dataReader.GetValue(4)};
+
+            dataReader.Close();
+            Group.Load();
         }
 
-        public new void Save()
+        public void Save()
         {
-            var sqlCmd = new SqlCommand("add_new_student", cnn);
-            sqlCmd.CommandType = CommandType.StoredProcedure;
+            var sqlCmd = new SqlCommand("add_new_student", cnn) {CommandType = CommandType.StoredProcedure};
             sqlCmd.Parameters.Clear();
 
             sqlCmd.Parameters.AddWithValue("@id_student", Id);
@@ -49,10 +49,9 @@ namespace Model
             sqlCmd.ExecuteNonQuery();
         }
 
-        public new void Update()
+        public void Update()
         {
-            var sqlCmd = new SqlCommand("update_test_question", cnn);
-            sqlCmd.CommandType = CommandType.StoredProcedure;
+            var sqlCmd = new SqlCommand("update_test_question", cnn) {CommandType = CommandType.StoredProcedure};
             sqlCmd.Parameters.Clear();
             sqlCmd.Parameters.AddWithValue("@name", Name);
             sqlCmd.Parameters.AddWithValue("@last_name", LastName);
@@ -61,21 +60,27 @@ namespace Model
             sqlCmd.ExecuteNonQuery();
         }
 
-
-        public new List<Student> GetAll()
+        public void Delete()
         {
-            var sqlCmd = new SqlCommand("get_all_student", cnn);
-            sqlCmd.CommandType = CommandType.StoredProcedure;
-            SqlDataReader dataReader = sqlCmd.ExecuteReader();
+            var sqlCmd = new SqlCommand("delete_student", cnn) { CommandType = CommandType.StoredProcedure };
+            sqlCmd.Parameters.AddWithValue("@id_student", Id);
+            sqlCmd.ExecuteNonQuery();
+        }
 
-            List<Student> list = new List<Student>();
+        public static List<Student> GetAll()
+        {
+            var sqlCmd = new SqlCommand("get_all_student", cnn) {CommandType = CommandType.StoredProcedure};
+            var dataReader = sqlCmd.ExecuteReader();
+            var list = new List<Student>();
 
             while (dataReader.Read())
             {
-                Student student = new Student();
-                student.Id = (int)dataReader.GetValue(0);
-                student.Name = dataReader.GetValue(1).ToString();
-                student.LastName = dataReader.GetValue(2).ToString();
+                var student = new Student
+                {
+                    Id = (int) dataReader.GetValue(0),
+                    Name = dataReader.GetValue(1).ToString(),
+                    LastName = dataReader.GetValue(2).ToString()
+                };
 
                 list.Add(student);
             }
@@ -83,14 +88,20 @@ namespace Model
             return list;
         }
 
-        public new void ChangePassword(string newPassword, string oldPassword)
+        public void ChangePassword(string newPassword, string oldPassword)
         {
-            var sqlCmd = new SqlCommand("change_password_student", cnn);
-            sqlCmd.CommandType = CommandType.StoredProcedure;
-            sqlCmd.Parameters.Clear();
-            sqlCmd.Parameters.AddWithValue("@id_teacher", Id);
+            var sqlCmd = new SqlCommand("change_password_student", cnn) {CommandType = CommandType.StoredProcedure};
+            sqlCmd.Parameters.AddWithValue("@id_student", Id);
             sqlCmd.Parameters.AddWithValue("@old_password", oldPassword);
             sqlCmd.Parameters.AddWithValue("@new_password", newPassword);
+            sqlCmd.ExecuteNonQuery();
+        }
+
+        public void Login()
+        {
+            var sqlCmd = new SqlCommand("login_student", cnn) { CommandType = CommandType.StoredProcedure };
+            sqlCmd.Parameters.AddWithValue("@id_student", Id);
+            sqlCmd.Parameters.AddWithValue("@password", Password);
             sqlCmd.ExecuteNonQuery();
         }
     }

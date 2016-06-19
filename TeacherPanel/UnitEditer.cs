@@ -6,42 +6,33 @@ namespace TeacherPanel
 {
     public partial class UnitEditer : Form
     {
-        private readonly Form _parentForm;
-
         private readonly Unit _unit;
 
         private readonly bool _isSave = true;
 
-        public UnitEditer(Form parentForm = null, int id = -1)
+        public UnitEditer(Unit unit = null)
         {
-            
             InitializeComponent();
-            _unit = new Unit();
-            _parentForm = parentForm;
 
+            _unit = unit ?? new Unit();
             tbNameUnit.DataBindings.Add("Text", _unit, "Name");
 
-            if (id == -1)
+            if (_unit.Id == 0)
                 return;
 
-            buttonAddSave.Text = "Изменить";
-            buttonDelete.Visible = true;
-
             _isSave = false;
-            _unit.Id = id;
-            _unit.Load();
+            buttonAddSave.Text = @"Изменить";
+            buttonDelete.Visible = true;
         }
 
         private void buttonAddSave_Click(object sender, EventArgs e)
         {
             try
             {
-                if (_isSave)
-                    _unit.Save();
-                else
-                    _unit.Update();
+                if (_isSave) _unit.Save();
+                else _unit.Update();
 
-                ((UnitPanel)_parentForm).UpdateList();
+                DialogResult = DialogResult.OK;
                 Close();
             }catch (Exception exeption)
             {

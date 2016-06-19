@@ -1,21 +1,24 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 
 namespace Model
 {
     public class Question : Entity, IEntity
     {
-        public int Id { get; set; } = 0;
+        public int Id { get; set; }
 
         public TypeQuestion Type { get; set; }
 
-        public int IdUnit { get; set; }
+        public Unit Unit { get; set; }
 
         public int IdTeacher { get; set; }
 
         public string TextQuestion { get; set; }
+
+        public byte[] Image { get; set; }
 
         public List<Answer> Answers { get; set; }
 
@@ -25,28 +28,27 @@ namespace Model
             Answers = new List<Answer>();
         }
 
-
         public void Load()
         {
-            if (Id != 0)
+            if (Id == 0)
                 return;
 
-            var sqlCmd = new SqlCommand("get_question", cnn) {CommandType = CommandType.StoredProcedure};
+            var sqlCmd = new SqlCommand("load_question", cnn) {CommandType = CommandType.StoredProcedure};
+            sqlCmd.Parameters.AddWithValue("@id_question", Id);
             var dataReader = sqlCmd.ExecuteReader();
 
             dataReader.Read();
 
-            var typeQuestion = new TypeQuestion {Id = (int) dataReader.GetValue(1)};
-            typeQuestion.Load();
-            Type = typeQuestion;
-
-            IdUnit = (int)dataReader.GetValue(2);
-
+            Type = new TypeQuestion { Id = (int)dataReader.GetValue(1) };
+            Unit = new Unit { Id = (int)dataReader.GetValue(2) };
             IdTeacher = (int)dataReader.GetValue(3);
-
             TextQuestion = dataReader.GetValue(4).ToString();
+            Image = (byte[])dataReader.GetValue(5);
 
             dataReader.Close();
+
+            Type.Load();
+            Unit.Load();
 
             GetAllAnswer();
         }
@@ -54,11 +56,11 @@ namespace Model
         public void Save()
         {
             var sqlCmd = new SqlCommand("add_new_question", cnn) {CommandType = CommandType.StoredProcedure};
-            sqlCmd.Parameters.Clear();
             sqlCmd.Parameters.AddWithValue("@id_type", Type.Id);
-            sqlCmd.Parameters.AddWithValue("@id_unit", IdUnit);
+            sqlCmd.Parameters.AddWithValue("@id_unit", Unit.Id);
             sqlCmd.Parameters.AddWithValue("@id_teacher", IdTeacher);
             sqlCmd.Parameters.AddWithValue("@text_question", TextQuestion);
+            sqlCmd.Parameters.AddWithValue("@image", Image);
 
             var retval = new SqlParameter
             {
@@ -70,18 +72,24 @@ namespace Model
             sqlCmd.ExecuteNonQuery();
 
             Id = (int)retval.Value;
-            
         }
 
         public void Update()
         {
             var sqlCmd = new SqlCommand("update_question", cnn) {CommandType = CommandType.StoredProcedure};
-            sqlCmd.Parameters.Clear();
             sqlCmd.Parameters.AddWithValue("@id_question", Id);
             sqlCmd.Parameters.AddWithValue("@id_type", Type.Id);
-            sqlCmd.Parameters.AddWithValue("@id_unit", IdUnit);
+            sqlCmd.Parameters.AddWithValue("@id_unit", Unit.Id);
             sqlCmd.Parameters.AddWithValue("@id_teacher", IdTeacher);
             sqlCmd.Parameters.AddWithValue("@text_question", TextQuestion);
+            sqlCmd.Parameters.AddWithValue("@image", Image);
+            sqlCmd.ExecuteNonQuery();
+        }
+
+        public void Delete()
+        {
+            var sqlCmd = new SqlCommand("delete_question", cnn) { CommandType = CommandType.StoredProcedure };
+            sqlCmd.Parameters.AddWithValue("@id_question", Id);
             sqlCmd.ExecuteNonQuery();
         }
 
@@ -100,15 +108,20 @@ namespace Model
                     Id = (int)dataReader.GetValue(0),
                     IdTeacher = (int)dataReader.GetValue(3),
                     TextQuestion = dataReader.GetValue(4).ToString(),
-                    IdUnit = (int)dataReader.GetValue(2),
-                    Type = new TypeQuestion { Id = (int)dataReader.GetValue(1) }
+                    Unit = new Unit { Id = (int)dataReader.GetValue(2)},
+                    Type = new TypeQuestion { Id = (int)dataReader.GetValue(1) },
+                    Image = (byte[])dataReader.GetValue(5)
                 };
                 list.Add(question);
             }
             dataReader.Close();
 
-            list.ForEach(x => x.Type.Load());
-            list.ForEach(x => x.GetAllAnswer());
+            list.ForEach(x =>
+            {
+                x.Type.Load();
+                x.Unit.Load();
+                x.GetAllAnswer();
+            });
             return list;
         }
 
