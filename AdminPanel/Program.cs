@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using Model;
 
-namespace TeacherPanel
+namespace AdminPanel
 {
     internal static class Program
     {
@@ -11,9 +15,9 @@ namespace TeacherPanel
         [STAThread]
         private static void Main()
         {
+            Entity.Connect();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new StartWindow());
             Application.Run(new MainForm());
         }
     }

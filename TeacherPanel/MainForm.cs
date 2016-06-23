@@ -8,6 +8,11 @@ namespace TeacherPanel
         public MainForm()
         {
             InitializeComponent();
+            var login = new Login();
+            var result = login.ShowDialog();
+            CenterToScreen();
+            if (result != DialogResult.OK)
+                Close();
         }
 
         private void buttonUnits_Click(object sender, EventArgs e)

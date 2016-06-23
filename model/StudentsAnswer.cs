@@ -22,7 +22,7 @@ namespace Model
             if (Id == 0)
                 return;
 
-            var sqlCmd = new SqlCommand("get_student_answer", cnn) {CommandType = CommandType.StoredProcedure};
+            var sqlCmd = new SqlCommand("get_student_answer", Cnn) {CommandType = CommandType.StoredProcedure};
             var dataReader = sqlCmd.ExecuteReader();
             dataReader.Read();
 
@@ -40,7 +40,7 @@ namespace Model
 
         public void Save()
         {
-            var sqlCmd = new SqlCommand("add_new_student_answer", cnn) {CommandType = CommandType.StoredProcedure};
+            var sqlCmd = new SqlCommand("add_new_student_answer", Cnn) {CommandType = CommandType.StoredProcedure};
             sqlCmd.Parameters.AddWithValue("@id_question", TestQuestion.Id);
             sqlCmd.Parameters.AddWithValue("@id_student", Student.Id);
             sqlCmd.Parameters.AddWithValue("@date_answer", DateAnswer);
@@ -74,7 +74,7 @@ namespace Model
         {
             var studentAnswers = new List<StudentsAnswer>();
 
-            var sqlCmd = new SqlCommand("get_student_answer", cnn) {CommandType = CommandType.StoredProcedure};
+            var sqlCmd = new SqlCommand("get_student_answer", Cnn) {CommandType = CommandType.StoredProcedure};
             var dataReader = sqlCmd.ExecuteReader();
 
             while (dataReader.Read())

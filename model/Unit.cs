@@ -22,7 +22,7 @@ namespace Model
             if (Id == 0)
                 return;
 
-            var sqlCmd = new SqlCommand("load_unit", cnn) {CommandType = CommandType.StoredProcedure};
+            var sqlCmd = new SqlCommand("load_unit", Cnn) {CommandType = CommandType.StoredProcedure};
             sqlCmd.Parameters.AddWithValue("@id_unit", Id);
 
             var dataReader = sqlCmd.ExecuteReader();
@@ -33,7 +33,7 @@ namespace Model
 
         public void Save()
         {
-            var sqlCmd = new SqlCommand("add_new_unit", cnn) {CommandType = CommandType.StoredProcedure};
+            var sqlCmd = new SqlCommand("add_new_unit", Cnn) {CommandType = CommandType.StoredProcedure};
             sqlCmd.Parameters.Clear();
             sqlCmd.Parameters.AddWithValue("@name", Name);
             var retval = new SqlParameter
@@ -50,7 +50,7 @@ namespace Model
 
         public void Update()
         {
-            var sqlCmd = new SqlCommand("update_unit", cnn) {CommandType = CommandType.StoredProcedure};
+            var sqlCmd = new SqlCommand("update_unit", Cnn) {CommandType = CommandType.StoredProcedure};
             sqlCmd.Parameters.Clear();
             sqlCmd.Parameters.AddWithValue("@id_unit", Id);
             sqlCmd.Parameters.AddWithValue("@name", Name);
@@ -59,7 +59,7 @@ namespace Model
 
         public void Delete()
         {
-            var sqlCmd = new SqlCommand("delete_unit", cnn) { CommandType = CommandType.StoredProcedure };
+            var sqlCmd = new SqlCommand("delete_unit", Cnn) { CommandType = CommandType.StoredProcedure };
             sqlCmd.Parameters.Clear();
             sqlCmd.Parameters.AddWithValue("@id_unit", Id);
             sqlCmd.ExecuteNonQuery();
@@ -67,7 +67,7 @@ namespace Model
 
         public static List<Unit> GetAll()
         {
-            var sqlCmd = new SqlCommand("get_all_unit", cnn) {CommandType = CommandType.StoredProcedure};
+            var sqlCmd = new SqlCommand("get_all_unit", Cnn) {CommandType = CommandType.StoredProcedure};
             var dataReader = sqlCmd.ExecuteReader();
 
             var list = new List<Unit>();

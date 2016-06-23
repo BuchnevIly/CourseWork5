@@ -15,7 +15,7 @@ namespace Model
         {
             if (Id == 0)
                 return;
-            var sqlCmd = new SqlCommand("load_group", cnn) {CommandType = CommandType.StoredProcedure};
+            var sqlCmd = new SqlCommand("load_group", Cnn) {CommandType = CommandType.StoredProcedure};
             sqlCmd.Parameters.Clear();
             sqlCmd.Parameters.AddWithValue("@id_group", Id);
             SqlDataReader dataReader = sqlCmd.ExecuteReader();
@@ -26,13 +26,11 @@ namespace Model
             Name = dataReader.GetValue(1).ToString();
 
             dataReader.Close();
-
-            GetStudents();
         }
 
         public void Save()
         {
-            var sqlCmd = new SqlCommand("add_new_group", cnn) {CommandType = CommandType.StoredProcedure};
+            var sqlCmd = new SqlCommand("add_new_group", Cnn) {CommandType = CommandType.StoredProcedure};
             sqlCmd.Parameters.Clear();
 
             sqlCmd.Parameters.AddWithValue("@name", Name);
@@ -47,12 +45,11 @@ namespace Model
             sqlCmd.ExecuteNonQuery();
 
             Id = (int)retval.Value;
-            sqlCmd.ExecuteNonQuery();
         }
 
         public void Update()
         {
-            var sqlCmd = new SqlCommand("update_group", cnn) {CommandType = CommandType.StoredProcedure};
+            var sqlCmd = new SqlCommand("update_group", Cnn) {CommandType = CommandType.StoredProcedure};
             sqlCmd.Parameters.Clear();
             sqlCmd.Parameters.AddWithValue("@id_group", Id);
             sqlCmd.Parameters.AddWithValue("@name", Name);
@@ -61,14 +58,14 @@ namespace Model
 
         public void Delete()
         {
-            var sqlCmd = new SqlCommand("delete_group", cnn) { CommandType = CommandType.StoredProcedure };
+            var sqlCmd = new SqlCommand("delete_group", Cnn) { CommandType = CommandType.StoredProcedure };
             sqlCmd.Parameters.AddWithValue("@id_group", Id);
             sqlCmd.ExecuteNonQuery();
         }
 
-        public List<Group> GetAll()
+        public static List<Group> GetAll()
         {
-            var sqlCmd = new SqlCommand("get_all_group", cnn) {CommandType = CommandType.StoredProcedure};
+            var sqlCmd = new SqlCommand("get_all_group", Cnn) {CommandType = CommandType.StoredProcedure};
             var dataReader = sqlCmd.ExecuteReader();
             var list = new List<Group>();
 
@@ -88,6 +85,11 @@ namespace Model
         public List<Student> GetStudents()
         {
             return Student.GetAll().Where(x => x.Group.Id == Id).ToList();
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
     }
 }

@@ -24,7 +24,7 @@ namespace Model
             if (Id == 0)
                 return;
 
-            var sqlCmd = new SqlCommand("load_test", cnn) {CommandType = CommandType.StoredProcedure};
+            var sqlCmd = new SqlCommand("load_test", Cnn) {CommandType = CommandType.StoredProcedure};
             var dataReader = sqlCmd.ExecuteReader();
 
             dataReader.Read();
@@ -38,7 +38,7 @@ namespace Model
 
         public void Save()
         {
-            var sqlCmd = new SqlCommand("add_new_test", cnn) {CommandType = CommandType.StoredProcedure};
+            var sqlCmd = new SqlCommand("add_new_test", Cnn) {CommandType = CommandType.StoredProcedure};
             sqlCmd.Parameters.AddWithValue("@name", Name);
             sqlCmd.Parameters.AddWithValue("@test_date_start", TestDataStart);
             sqlCmd.Parameters.AddWithValue("@test_date_end", TestDataEnd);
@@ -54,13 +54,11 @@ namespace Model
             sqlCmd.ExecuteNonQuery();
 
             Id = (int)retval.Value;
-
-            sqlCmd.ExecuteNonQuery();
         }
 
         public void Update()
         {
-            var sqlCmd = new SqlCommand("update_test", cnn) {CommandType = CommandType.StoredProcedure};
+            var sqlCmd = new SqlCommand("update_test", Cnn) {CommandType = CommandType.StoredProcedure};
             sqlCmd.Parameters.Clear();
 
             sqlCmd.Parameters.AddWithValue("@id_test", Id);
@@ -73,14 +71,14 @@ namespace Model
 
         public void Delete()
         {
-            var sqlCmd = new SqlCommand("delete_test", cnn) { CommandType = CommandType.StoredProcedure };
+            var sqlCmd = new SqlCommand("delete_test", Cnn) { CommandType = CommandType.StoredProcedure };
             sqlCmd.Parameters.AddWithValue("@id_test", Id);
             sqlCmd.ExecuteNonQuery();
         }
 
         public static List<Test> GetAll()
         {
-            var sqlCmd = new SqlCommand("get_all_test", cnn) {CommandType = CommandType.StoredProcedure};
+            var sqlCmd = new SqlCommand("get_all_test", Cnn) {CommandType = CommandType.StoredProcedure};
             var dataReader = sqlCmd.ExecuteReader();
             var list = new List<Test>();
 

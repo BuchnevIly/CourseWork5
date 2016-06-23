@@ -19,7 +19,7 @@ namespace Model
             if (Id == 0)
                 return;
 
-            var sqlCmd = new SqlCommand("load_answer", cnn) {CommandType = CommandType.StoredProcedure};
+            var sqlCmd = new SqlCommand("load_answer", Cnn) {CommandType = CommandType.StoredProcedure};
             var dataReader = sqlCmd.ExecuteReader();
 
             dataReader.Read();
@@ -33,7 +33,7 @@ namespace Model
 
         public void Save()
         {
-            var sqlCmd = new SqlCommand("add_new_answer", cnn) {CommandType = CommandType.StoredProcedure};
+            var sqlCmd = new SqlCommand("add_new_answer", Cnn) {CommandType = CommandType.StoredProcedure};
             sqlCmd.Parameters.AddWithValue("@id_question", IdQuestion);
             sqlCmd.Parameters.AddWithValue("@text_answer", TextAnswer);
             sqlCmd.Parameters.AddWithValue("@true_answer", TrueAnswer);
@@ -53,7 +53,7 @@ namespace Model
 
         public void Update()
         {
-            var sqlCmd = new SqlCommand("update_answer", cnn) {CommandType = CommandType.StoredProcedure};
+            var sqlCmd = new SqlCommand("update_answer", Cnn) {CommandType = CommandType.StoredProcedure};
             sqlCmd.Parameters.AddWithValue("@id_answer", Id);
             sqlCmd.Parameters.AddWithValue("@id_question", IdQuestion);
             sqlCmd.Parameters.AddWithValue("@text_answer", TextAnswer);
@@ -63,14 +63,14 @@ namespace Model
 
         public void Delete()
         {
-            var sqlCmd = new SqlCommand("delete_answer", cnn) { CommandType = CommandType.StoredProcedure };
+            var sqlCmd = new SqlCommand("delete_answer", Cnn) { CommandType = CommandType.StoredProcedure };
             sqlCmd.Parameters.AddWithValue("@id_answer", Id);
             sqlCmd.ExecuteNonQuery();
         }
 
         public static List<Answer> GetAll()
         {
-            var sqlCmd = new SqlCommand("get_all_answer", cnn) {CommandType = CommandType.StoredProcedure};
+            var sqlCmd = new SqlCommand("get_all_answer", Cnn) {CommandType = CommandType.StoredProcedure};
             var dataReader = sqlCmd.ExecuteReader();
             var list = new List<Answer>();
 

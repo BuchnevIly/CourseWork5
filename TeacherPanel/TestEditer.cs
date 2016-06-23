@@ -95,7 +95,7 @@ namespace TeacherPanel
             UpdateLists();
         }
 
-        private void OpenQuestion(ListView listView, IReadOnlyList<Question> questions)
+        private static void OpenQuestion(ListView listView, IReadOnlyList<Question> questions)
         {
             try
             {

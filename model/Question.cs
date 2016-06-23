@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.IO;
 using System.Linq;
 
 namespace Model
@@ -33,7 +32,7 @@ namespace Model
             if (Id == 0)
                 return;
 
-            var sqlCmd = new SqlCommand("load_question", cnn) {CommandType = CommandType.StoredProcedure};
+            var sqlCmd = new SqlCommand("load_question", Cnn) {CommandType = CommandType.StoredProcedure};
             sqlCmd.Parameters.AddWithValue("@id_question", Id);
             var dataReader = sqlCmd.ExecuteReader();
 
@@ -55,7 +54,7 @@ namespace Model
 
         public void Save()
         {
-            var sqlCmd = new SqlCommand("add_new_question", cnn) {CommandType = CommandType.StoredProcedure};
+            var sqlCmd = new SqlCommand("add_new_question", Cnn) {CommandType = CommandType.StoredProcedure};
             sqlCmd.Parameters.AddWithValue("@id_type", Type.Id);
             sqlCmd.Parameters.AddWithValue("@id_unit", Unit.Id);
             sqlCmd.Parameters.AddWithValue("@id_teacher", IdTeacher);
@@ -76,7 +75,7 @@ namespace Model
 
         public void Update()
         {
-            var sqlCmd = new SqlCommand("update_question", cnn) {CommandType = CommandType.StoredProcedure};
+            var sqlCmd = new SqlCommand("update_question", Cnn) {CommandType = CommandType.StoredProcedure};
             sqlCmd.Parameters.AddWithValue("@id_question", Id);
             sqlCmd.Parameters.AddWithValue("@id_type", Type.Id);
             sqlCmd.Parameters.AddWithValue("@id_unit", Unit.Id);
@@ -88,14 +87,14 @@ namespace Model
 
         public void Delete()
         {
-            var sqlCmd = new SqlCommand("delete_question", cnn) { CommandType = CommandType.StoredProcedure };
+            var sqlCmd = new SqlCommand("delete_question", Cnn) { CommandType = CommandType.StoredProcedure };
             sqlCmd.Parameters.AddWithValue("@id_question", Id);
             sqlCmd.ExecuteNonQuery();
         }
 
         public static List<Question> GetAll()
         {
-            var sqlCmd = new SqlCommand("get_all_question", cnn) {CommandType = CommandType.StoredProcedure};
+            var sqlCmd = new SqlCommand("get_all_question", Cnn) {CommandType = CommandType.StoredProcedure};
             sqlCmd.Parameters.Clear();
             var dataReader = sqlCmd.ExecuteReader();
 

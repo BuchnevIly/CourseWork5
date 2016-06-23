@@ -15,6 +15,8 @@ namespace TeacherPanel
 
             textBoxLogin.DataBindings.Add("Text", _teacher, "LoginName");
             textBoxPassword.DataBindings.Add("Text", _teacher, "Password");
+
+            CenterToParent();
         }
 
         private void buttonLogin_Click(object sender, EventArgs e)
@@ -22,9 +24,8 @@ namespace TeacherPanel
             try
             {
                 _teacher.Login();
-                Hide();
-                var mainForm = new MainForm();
-                mainForm.Show();
+                DialogResult = DialogResult.OK;
+                Close();
             }
             catch (Exception exaption)
             {

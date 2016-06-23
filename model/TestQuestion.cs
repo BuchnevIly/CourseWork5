@@ -18,7 +18,7 @@ namespace Model
         {
             if (Id == 0)
                 return;
-            var sqlCmd = new SqlCommand("load_test_question", cnn) {CommandType = CommandType.StoredProcedure};
+            var sqlCmd = new SqlCommand("load_test_question", Cnn) {CommandType = CommandType.StoredProcedure};
             var dataReader = sqlCmd.ExecuteReader();
 
             dataReader.Read();
@@ -37,7 +37,7 @@ namespace Model
 
         public void Save()
         {
-            var sqlCmd = new SqlCommand("add_new_test_question", cnn) {CommandType = CommandType.StoredProcedure};
+            var sqlCmd = new SqlCommand("add_new_test_question", Cnn) {CommandType = CommandType.StoredProcedure};
             sqlCmd.Parameters.Clear();
             sqlCmd.Parameters.AddWithValue("@id_question", Question.Id);
             sqlCmd.Parameters.AddWithValue("@id_teacher", IdTeacher);
@@ -57,7 +57,7 @@ namespace Model
 
         public void Update()
         {
-            var sqlCmd = new SqlCommand("update_test_question", cnn) {CommandType = CommandType.StoredProcedure};
+            var sqlCmd = new SqlCommand("update_test_question", Cnn) {CommandType = CommandType.StoredProcedure};
             sqlCmd.Parameters.Clear();
             sqlCmd.Parameters.AddWithValue("@id_question", Question.Id);
             sqlCmd.Parameters.AddWithValue("@id_teacher", IdTeacher);
@@ -68,14 +68,14 @@ namespace Model
 
         public void Delete()
         {
-            var sqlCmd = new SqlCommand("delete_test_question", cnn) { CommandType = CommandType.StoredProcedure };
+            var sqlCmd = new SqlCommand("delete_test_question", Cnn) { CommandType = CommandType.StoredProcedure };
             sqlCmd.Parameters.AddWithValue("@id_test_question", Id);
             sqlCmd.ExecuteNonQuery();
         }
 
         public static List<TestQuestion> GetAll()
         {
-            var sqlCmd = new SqlCommand("get_all_test_question", cnn) {CommandType = CommandType.StoredProcedure};
+            var sqlCmd = new SqlCommand("get_all_test_question", Cnn) {CommandType = CommandType.StoredProcedure};
             var dataReader = sqlCmd.ExecuteReader();
 
             var list = new List<TestQuestion>();
@@ -83,7 +83,6 @@ namespace Model
             while (dataReader.Read())
             {
                 var question = new Question { Id = (int)dataReader.GetValue(2) };
-                question.Load();
                 var testQuestion = new TestQuestion
                 {
                     Id = (int)dataReader.GetValue(0),
@@ -94,6 +93,8 @@ namespace Model
                 list.Add(testQuestion);
             }
             dataReader.Close();
+
+            list.ForEach(x => x.Question.Load());
             return list;
         }
 

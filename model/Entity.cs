@@ -10,11 +10,11 @@ namespace Model
 {
    public class Entity
     {
-        protected static SqlConnection cnn;
+        protected static SqlConnection Cnn;
 
         public static void Initialize()
         {
-            if (cnn != null && cnn.State == ConnectionState.Open)
+            if (Cnn != null && Cnn.State == ConnectionState.Open)
                 return;
 
             Connect();
@@ -28,8 +28,8 @@ namespace Model
         public static void Connect()
         {
             const string connetionString = "Data Source=DESKTOP-RD3DFVB;Initial Catalog=TestSystem;Integrated Security=True";
-            cnn = new SqlConnection(connetionString);
-            cnn.Open();
+            Cnn = new SqlConnection(connetionString);
+            Cnn.Open();
         }
     }
 }

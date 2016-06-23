@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "model\Model.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeacherPanel", "TeacherPanel\TeacherPanel.csproj", "{7D32BF61-DE3C-4EFD-A3D8-6632701B0B4A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminPanel", "AdminPanel\AdminPanel.csproj", "{785991E5-8CD6-4101-8059-A3C892F72E53}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{7D32BF61-DE3C-4EFD-A3D8-6632701B0B4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D32BF61-DE3C-4EFD-A3D8-6632701B0B4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D32BF61-DE3C-4EFD-A3D8-6632701B0B4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{785991E5-8CD6-4101-8059-A3C892F72E53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{785991E5-8CD6-4101-8059-A3C892F72E53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{785991E5-8CD6-4101-8059-A3C892F72E53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{785991E5-8CD6-4101-8059-A3C892F72E53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
