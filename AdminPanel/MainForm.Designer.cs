@@ -93,6 +93,7 @@
             this.linkLabeTeacher.TabIndex = 4;
             this.linkLabeTeacher.TabStop = true;
             this.linkLabeTeacher.Text = "Преподаватели";
+            this.linkLabeTeacher.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabeTeacher_LinkClicked);
             // 
             // linkLabelAddTeacher
             // 
@@ -103,6 +104,7 @@
             this.linkLabelAddTeacher.TabIndex = 5;
             this.linkLabelAddTeacher.TabStop = true;
             this.linkLabelAddTeacher.Text = "Добавить преподавателя";
+            this.linkLabelAddTeacher.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelAddTeacher_LinkClicked);
             // 
             // linkLabelChangePassword
             // 
@@ -113,6 +115,7 @@
             this.linkLabelChangePassword.TabIndex = 6;
             this.linkLabelChangePassword.TabStop = true;
             this.linkLabelChangePassword.Text = "Сменить пароль";
+            this.linkLabelChangePassword.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelChangePassword_LinkClicked);
             // 
             // webBrowser
             // 

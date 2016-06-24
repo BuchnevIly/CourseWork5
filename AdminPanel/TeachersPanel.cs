@@ -29,7 +29,7 @@ namespace AdminPanel
             var i = 0;
             _teachers.ForEach(x =>
             {
-                listView.Items.Add(Convert.ToString(i));
+                listView.Items.Add(Convert.ToString(i + 1));
                 listView.Items[i].SubItems.Add(x.Name + " " + x.LastName);
                 i++;
             });
@@ -51,12 +51,26 @@ namespace AdminPanel
 
         private void buttonOpen_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                var teacher = _teachers[listView.SelectedIndices[0]];
+                var teacherEditer = new TeacherEditer(teacher);
+                var dialogResult = teacherEditer.ShowDialog();
+                if (dialogResult == DialogResult.OK)
+                    UpdateList();
+            }
+            catch (IndexOutOfRangeException)
+            {
+                MessageBox.Show(@"Выделите нужного преподвтеля", @"Ошибка");
+            }
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-
+            var teacherEditer = new TeacherEditer();
+            var dialogResult = teacherEditer.ShowDialog();
+            if (dialogResult == DialogResult.OK)
+                UpdateList();
         }
     }
 }

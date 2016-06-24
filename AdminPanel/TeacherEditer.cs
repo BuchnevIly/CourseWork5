@@ -18,7 +18,7 @@ namespace AdminPanel
             _teacher = teacher ?? new Teacher();
             textBoxName.DataBindings.Add("Text", _teacher, "Name");
             textBoxLastName.DataBindings.Add("Text", _teacher, "LastName");
-            textBoxLogin.DataBindings.Add("Text", _teacher, "Login");
+            textBoxLogin.DataBindings.Add("Text", _teacher, "LoginName");
 
 
             textBoxLastName.TextChanged += textBoxLogin_TextChanged;
@@ -36,9 +36,15 @@ namespace AdminPanel
             try
             {
                 if (_teacher.Id == 0)
+                {
+                    _teacher.Password = "12345";
                     _teacher.Save();
+                }
                 else
                     _teacher.Update();
+
+                DialogResult = DialogResult.OK;
+                Close();
             }
             catch (SqlException exception)
             {
@@ -50,11 +56,14 @@ namespace AdminPanel
         private void buttonDelete_Click(object sender, EventArgs e)
         {
             _teacher.Delete();
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void buttonReset_Click(object sender, EventArgs e)
         {
             _teacher.ResetPassword();
+            buttonReset.Enabled = false;
         }
     }
 }
