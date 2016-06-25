@@ -36,10 +36,10 @@
             this.buttonSetCurrentTime = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.timePickerStart = new System.Windows.Forms.DateTimePicker();
-            this.datePickerStart = new System.Windows.Forms.DateTimePicker();
             this.datePickerEnd = new System.Windows.Forms.DateTimePicker();
             this.timePickerEnd = new System.Windows.Forms.DateTimePicker();
+            this.datePickerStart = new System.Windows.Forms.DateTimePicker();
+            this.timePickerStart = new System.Windows.Forms.DateTimePicker();
             this.listViewAllQueston = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -55,11 +55,16 @@
             this.buttonOpenFromAllQuestion = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.textBoxName = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.listViewGroup = new System.Windows.Forms.ListView();
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonDelete
@@ -101,7 +106,7 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(543, 379);
+            this.buttonSave.Location = new System.Drawing.Point(12, 381);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(75, 23);
             this.buttonSave.TabIndex = 10;
@@ -137,29 +142,12 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.buttonSetCurrentTime);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(418, 91);
+            this.groupBox1.Location = new System.Drawing.Point(12, 91);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(200, 272);
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Период выполнения";
-            // 
-            // timePickerStart
-            // 
-            this.timePickerStart.CustomFormat = "";
-            this.timePickerStart.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.timePickerStart.Location = new System.Drawing.Point(11, 63);
-            this.timePickerStart.Name = "timePickerStart";
-            this.timePickerStart.ShowUpDown = true;
-            this.timePickerStart.Size = new System.Drawing.Size(76, 20);
-            this.timePickerStart.TabIndex = 12;
-            // 
-            // datePickerStart
-            // 
-            this.datePickerStart.Location = new System.Drawing.Point(11, 89);
-            this.datePickerStart.Name = "datePickerStart";
-            this.datePickerStart.Size = new System.Drawing.Size(183, 20);
-            this.datePickerStart.TabIndex = 13;
             // 
             // datePickerEnd
             // 
@@ -177,6 +165,23 @@
             this.timePickerEnd.ShowUpDown = true;
             this.timePickerEnd.Size = new System.Drawing.Size(76, 20);
             this.timePickerEnd.TabIndex = 14;
+            // 
+            // datePickerStart
+            // 
+            this.datePickerStart.Location = new System.Drawing.Point(11, 89);
+            this.datePickerStart.Name = "datePickerStart";
+            this.datePickerStart.Size = new System.Drawing.Size(183, 20);
+            this.datePickerStart.TabIndex = 13;
+            // 
+            // timePickerStart
+            // 
+            this.timePickerStart.CustomFormat = "";
+            this.timePickerStart.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.timePickerStart.Location = new System.Drawing.Point(11, 63);
+            this.timePickerStart.Name = "timePickerStart";
+            this.timePickerStart.ShowUpDown = true;
+            this.timePickerStart.Size = new System.Drawing.Size(76, 20);
+            this.timePickerStart.TabIndex = 12;
             // 
             // listViewAllQueston
             // 
@@ -287,7 +292,7 @@
             this.groupBox2.Controls.Add(this.buttonAdd);
             this.groupBox2.Controls.Add(this.buttonDelete);
             this.groupBox2.Controls.Add(this.buttonOpenFromTestQuestion);
-            this.groupBox2.Location = new System.Drawing.Point(12, 12);
+            this.groupBox2.Location = new System.Drawing.Point(218, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(400, 401);
             this.groupBox2.TabIndex = 19;
@@ -298,12 +303,19 @@
             // 
             this.groupBox3.Controls.Add(this.textBoxName);
             this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Location = new System.Drawing.Point(418, 12);
+            this.groupBox3.Location = new System.Drawing.Point(12, 12);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(200, 73);
             this.groupBox3.TabIndex = 20;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Контрольная";
+            // 
+            // textBoxName
+            // 
+            this.textBoxName.Location = new System.Drawing.Point(14, 34);
+            this.textBoxName.Name = "textBoxName";
+            this.textBoxName.Size = new System.Drawing.Size(180, 20);
+            this.textBoxName.TabIndex = 1;
             // 
             // label5
             // 
@@ -314,18 +326,45 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "Название онтрольной";
             // 
-            // textBoxName
+            // groupBox4
             // 
-            this.textBoxName.Location = new System.Drawing.Point(14, 34);
-            this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(180, 20);
-            this.textBoxName.TabIndex = 1;
+            this.groupBox4.Controls.Add(this.listViewGroup);
+            this.groupBox4.Location = new System.Drawing.Point(624, 12);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(400, 403);
+            this.groupBox4.TabIndex = 20;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Группы";
+            // 
+            // listViewGroup
+            // 
+            this.listViewGroup.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader9,
+            this.columnHeader10});
+            this.listViewGroup.FullRowSelect = true;
+            this.listViewGroup.Location = new System.Drawing.Point(16, 34);
+            this.listViewGroup.Name = "listViewGroup";
+            this.listViewGroup.Size = new System.Drawing.Size(367, 356);
+            this.listViewGroup.TabIndex = 14;
+            this.listViewGroup.UseCompatibleStateImageBehavior = false;
+            this.listViewGroup.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "№";
+            this.columnHeader9.Width = 31;
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "Группа";
+            this.columnHeader10.Width = 154;
             // 
             // TestEditer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(630, 427);
+            this.ClientSize = new System.Drawing.Size(1025, 427);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -338,6 +377,7 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -372,5 +412,9 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox textBoxName;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.ListView listViewGroup;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
     }
 }

@@ -10,6 +10,7 @@ namespace AdminPanel
         public Login()
         {
             InitializeComponent();
+            DialogResult = DialogResult.Cancel;
         }
 
         private void buttonLogin_Click(object sender, EventArgs e)

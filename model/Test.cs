@@ -18,6 +18,8 @@ namespace Model
 
         public DateTime TestDataEnd { get; set; }
 
+        public Group Group { get; set; }
+
 
         public void Load()
         {
@@ -33,7 +35,10 @@ namespace Model
             Name = dataReader.GetValue(1).ToString();
             TestDataStart = (DateTime)dataReader.GetValue(3);
             TestDataEnd = (DateTime)dataReader.GetValue(4);
+            Group = new Group {Id = (int)dataReader.GetValue(5)};
             dataReader.Close();
+
+            Group.Load();
         }
 
         public void Save()
@@ -42,6 +47,7 @@ namespace Model
             sqlCmd.Parameters.AddWithValue("@name", Name);
             sqlCmd.Parameters.AddWithValue("@test_date_start", TestDataStart);
             sqlCmd.Parameters.AddWithValue("@test_date_end", TestDataEnd);
+            sqlCmd.Parameters.AddWithValue("@id_group", Group.Id);
 
             var retval = new SqlParameter
             {
@@ -65,6 +71,7 @@ namespace Model
             sqlCmd.Parameters.AddWithValue("@name", Name);
             sqlCmd.Parameters.AddWithValue("@test_date_start", TestDataStart);
             sqlCmd.Parameters.AddWithValue("@test_date_end", TestDataEnd);
+            sqlCmd.Parameters.AddWithValue("@id_group", Group.Id);
 
             sqlCmd.ExecuteNonQuery();
         }
@@ -89,14 +96,20 @@ namespace Model
                     Id = (int) dataReader.GetValue(0),
                     Name = dataReader.GetValue(1).ToString(),
                     TestDataStart = (DateTime) dataReader.GetValue(2),
-                    TestDataEnd = (DateTime) dataReader.GetValue(3)
+                    TestDataEnd = (DateTime) dataReader.GetValue(3),
+                    Group = new Group { Id = (int)dataReader.GetValue(4) }
                 };
                 list.Add(test);
             }
 
             dataReader.Close();
 
-            list.ForEach(x => x.GetTestQuestions());
+            
+            list.ForEach(x =>
+            {
+                x.Group.Load();
+                x.GetTestQuestions();
+            });
 
             return list;
         }

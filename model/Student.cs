@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 
 
 namespace Model
@@ -23,6 +24,7 @@ namespace Model
                 return;
 
             var sqlCmd = new SqlCommand("load_student", Cnn) {CommandType = CommandType.StoredProcedure};
+            sqlCmd.Parameters.AddWithValue("@id_student", Id);
             var dataReader = sqlCmd.ExecuteReader();
 
             dataReader.Read();
@@ -39,7 +41,6 @@ namespace Model
         public void Save()
         {
             var sqlCmd = new SqlCommand("add_new_student", Cnn) {CommandType = CommandType.StoredProcedure};
-            sqlCmd.Parameters.Clear();
 
             sqlCmd.Parameters.AddWithValue("@id_student", Id);
             sqlCmd.Parameters.AddWithValue("@name", Name);
@@ -112,6 +113,11 @@ namespace Model
             sqlCmd.Parameters.AddWithValue("@id_student", Id);
             sqlCmd.Parameters.AddWithValue("@password", Password);
             sqlCmd.ExecuteNonQuery();
+        }
+
+        public List<Test> GetTest()
+        {
+            return Test.GetAll().Where(x => x.Group.Id == Group.Id).ToList();
         }
     }
 }

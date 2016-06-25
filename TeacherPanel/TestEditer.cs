@@ -11,6 +11,8 @@ namespace TeacherPanel
 
         private readonly List<Question> _testQuestions;
 
+        private readonly List<Group> _groups;
+
         public TestEditer( Test test = null)
         {
             InitializeComponent();
@@ -18,6 +20,10 @@ namespace TeacherPanel
             _allQuestions = Question.GetAll();
 
             _testQuestions = new List<Question>();
+
+            _groups = Group.GetAll();
+
+            ShowGroup();
 
             if (test != null)
             {
@@ -33,8 +39,20 @@ namespace TeacherPanel
                     _allQuestions.RemoveAt(index);
                 });
             }
+
             UpdateLists();
 
+        }
+
+        private void ShowGroup()
+        {
+            var i = 0;
+            _groups.ForEach(x =>
+            {
+                listViewGroup.Items.Add(Convert.ToString(i + 1));
+                listViewGroup.Items[i].SubItems.Add(x.Name);
+                i++;
+            });
         }
 
         public void UpdateLists()
@@ -133,6 +151,12 @@ namespace TeacherPanel
                 return;
             }
 
+            if (listViewGroup.SelectedIndices.Count == 0)
+            {
+                MessageBox.Show(@"Назначте группу на контрольную", @"Ошибка");
+                return;
+            }
+
             var startDateTime = new DateTime(datePickerStart.Value.Year, datePickerStart.Value.Month,
                 datePickerStart.Value.Day, timePickerStart.Value.Hour, timePickerStart.Value.Minute,
                 timePickerStart.Value.Second);
@@ -147,7 +171,16 @@ namespace TeacherPanel
                 return;
             }
 
-            var test = new Test {Name = textBoxName.Text, TestDataStart = startDateTime, TestDataEnd = endDateTime};
+            var group = _groups[listViewGroup.SelectedIndices[0]];
+
+            var test = new Test
+            {
+                Name = textBoxName.Text,
+                TestDataStart = startDateTime,
+                TestDataEnd = endDateTime,
+                Group = group
+            };
+
             test.Save();
 
             _testQuestions.ForEach(x =>

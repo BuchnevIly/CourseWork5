@@ -19,26 +19,25 @@ namespace Model
             if (Id == 0)
                 return;
             var sqlCmd = new SqlCommand("load_test_question", Cnn) {CommandType = CommandType.StoredProcedure};
+            sqlCmd.Parameters.AddWithValue("@id_test_question", Id);
             var dataReader = sqlCmd.ExecuteReader();
 
             dataReader.Read();
 
             Id = (int)dataReader.GetValue(0);
-
-            var question = new Question {Id = (int) dataReader.GetValue(2)};
-            question.Load();
-            Question = question;
+            Question = new Question { Id = (int)dataReader.GetValue(2) };
 
             IdTeacher = (int)dataReader.GetValue(3);
             IdTest = (int)dataReader.GetValue(1); 
 
             dataReader.Close();
+
+            Question.Load();
         }
 
         public void Save()
         {
             var sqlCmd = new SqlCommand("add_new_test_question", Cnn) {CommandType = CommandType.StoredProcedure};
-            sqlCmd.Parameters.Clear();
             sqlCmd.Parameters.AddWithValue("@id_question", Question.Id);
             sqlCmd.Parameters.AddWithValue("@id_teacher", IdTeacher);
             sqlCmd.Parameters.AddWithValue("@id_test", IdTest);

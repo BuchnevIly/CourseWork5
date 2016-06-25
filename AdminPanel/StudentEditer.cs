@@ -33,7 +33,7 @@ namespace AdminPanel
                         return;
                     }
 
-            if (group == null) 
+            if (group != null) 
                 foreach (var item in comboBoxGroup.Items)
                     if (((Group) item).Id == group.Id)
                     {
