@@ -54,9 +54,6 @@ namespace Model
             sqlCmd.Parameters.Add(retval);
             sqlCmd.ExecuteNonQuery();
 
-            
-            sqlCmd.ExecuteNonQuery();
-
             Id = (int)retval.Value;
         }
 

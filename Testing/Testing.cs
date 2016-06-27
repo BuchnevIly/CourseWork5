@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using model;
 using Model;
 
 namespace Testing
@@ -70,7 +71,7 @@ namespace Testing
                     _answers.ForEach(x => checkedListBox1.Items.Add(x.TextAnswer));
                     break;
                 case 3:
-                    tabControl.SelectedTab = tabPage2;
+                    tabControl.SelectedTab = tabPage3;
                     break;
             }
         }
@@ -96,7 +97,7 @@ namespace Testing
                                 isTrue = false;
                     break;
                 case 3:
-                    isTrue = false;
+                    isTrue = SqlQuesyion.IsTrue(textBox2.Text, _testQuestions[_currentQuestion].Question.Answers[0].TextAnswer );
                     break;
             }
 

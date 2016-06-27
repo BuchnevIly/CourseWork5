@@ -118,5 +118,10 @@ namespace Model
         {
             return TestQuestion.GetAll().Where(x => x.IdTest == Id).ToList();
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

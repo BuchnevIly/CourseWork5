@@ -29,57 +29,30 @@
         private void InitializeComponent()
         {
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
-            this.buttonTest = new System.Windows.Forms.Button();
-            this.buttonStatistic = new System.Windows.Forms.Button();
-            this.buttonUnits = new System.Windows.Forms.Button();
             this.linkLabelTest = new System.Windows.Forms.LinkLabel();
             this.linkLabelStatistic = new System.Windows.Forms.LinkLabel();
             this.linkLabelAddNewUnit = new System.Windows.Forms.LinkLabel();
             this.linkLabelUnit = new System.Windows.Forms.LinkLabel();
             this.linkLabelQuestion = new System.Windows.Forms.LinkLabel();
             this.linkLabelAddNewQuestion = new System.Windows.Forms.LinkLabel();
+            this.linkLabelAddTest = new System.Windows.Forms.LinkLabel();
+            this.linkLabelResult = new System.Windows.Forms.LinkLabel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // webBrowser1
             // 
-            this.webBrowser1.Location = new System.Drawing.Point(217, 31);
+            this.webBrowser1.Location = new System.Drawing.Point(241, 31);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(474, 110);
+            this.webBrowser1.Size = new System.Drawing.Size(451, 399);
             this.webBrowser1.TabIndex = 0;
-            // 
-            // buttonTest
-            // 
-            this.buttonTest.Location = new System.Drawing.Point(318, 259);
-            this.buttonTest.Name = "buttonTest";
-            this.buttonTest.Size = new System.Drawing.Size(124, 47);
-            this.buttonTest.TabIndex = 1;
-            this.buttonTest.Text = "Контрольные работы";
-            this.buttonTest.UseVisualStyleBackColor = true;
-            // 
-            // buttonStatistic
-            // 
-            this.buttonStatistic.Location = new System.Drawing.Point(318, 312);
-            this.buttonStatistic.Name = "buttonStatistic";
-            this.buttonStatistic.Size = new System.Drawing.Size(124, 47);
-            this.buttonStatistic.TabIndex = 2;
-            this.buttonStatistic.Text = "Статистика";
-            this.buttonStatistic.UseVisualStyleBackColor = true;
-            // 
-            // buttonUnits
-            // 
-            this.buttonUnits.Location = new System.Drawing.Point(318, 365);
-            this.buttonUnits.Name = "buttonUnits";
-            this.buttonUnits.Size = new System.Drawing.Size(124, 47);
-            this.buttonUnits.TabIndex = 3;
-            this.buttonUnits.Text = "Разделы";
-            this.buttonUnits.UseVisualStyleBackColor = true;
-            this.buttonUnits.Click += new System.EventHandler(this.buttonUnits_Click);
             // 
             // linkLabelTest
             // 
             this.linkLabelTest.AutoSize = true;
-            this.linkLabelTest.Location = new System.Drawing.Point(33, 31);
+            this.linkLabelTest.Location = new System.Drawing.Point(10, 20);
             this.linkLabelTest.Name = "linkLabelTest";
             this.linkLabelTest.Size = new System.Drawing.Size(115, 13);
             this.linkLabelTest.TabIndex = 4;
@@ -90,17 +63,18 @@
             // linkLabelStatistic
             // 
             this.linkLabelStatistic.AutoSize = true;
-            this.linkLabelStatistic.Location = new System.Drawing.Point(33, 50);
+            this.linkLabelStatistic.Location = new System.Drawing.Point(10, 69);
             this.linkLabelStatistic.Name = "linkLabelStatistic";
             this.linkLabelStatistic.Size = new System.Drawing.Size(65, 13);
             this.linkLabelStatistic.TabIndex = 5;
             this.linkLabelStatistic.TabStop = true;
             this.linkLabelStatistic.Text = "Статистика";
+            this.linkLabelStatistic.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelStatistic_LinkClicked);
             // 
             // linkLabelAddNewUnit
             // 
             this.linkLabelAddNewUnit.AutoSize = true;
-            this.linkLabelAddNewUnit.Location = new System.Drawing.Point(51, 87);
+            this.linkLabelAddNewUnit.Location = new System.Drawing.Point(28, 106);
             this.linkLabelAddNewUnit.Name = "linkLabelAddNewUnit";
             this.linkLabelAddNewUnit.Size = new System.Drawing.Size(131, 13);
             this.linkLabelAddNewUnit.TabIndex = 7;
@@ -111,7 +85,7 @@
             // linkLabelUnit
             // 
             this.linkLabelUnit.AutoSize = true;
-            this.linkLabelUnit.Location = new System.Drawing.Point(33, 69);
+            this.linkLabelUnit.Location = new System.Drawing.Point(10, 88);
             this.linkLabelUnit.Name = "linkLabelUnit";
             this.linkLabelUnit.Size = new System.Drawing.Size(55, 13);
             this.linkLabelUnit.TabIndex = 6;
@@ -122,7 +96,7 @@
             // linkLabelQuestion
             // 
             this.linkLabelQuestion.AutoSize = true;
-            this.linkLabelQuestion.Location = new System.Drawing.Point(33, 105);
+            this.linkLabelQuestion.Location = new System.Drawing.Point(10, 124);
             this.linkLabelQuestion.Name = "linkLabelQuestion";
             this.linkLabelQuestion.Size = new System.Drawing.Size(52, 13);
             this.linkLabelQuestion.TabIndex = 8;
@@ -133,7 +107,7 @@
             // linkLabelAddNewQuestion
             // 
             this.linkLabelAddNewQuestion.AutoSize = true;
-            this.linkLabelAddNewQuestion.Location = new System.Drawing.Point(51, 123);
+            this.linkLabelAddNewQuestion.Location = new System.Drawing.Point(28, 142);
             this.linkLabelAddNewQuestion.Name = "linkLabelAddNewQuestion";
             this.linkLabelAddNewQuestion.Size = new System.Drawing.Size(131, 13);
             this.linkLabelAddNewQuestion.TabIndex = 9;
@@ -141,39 +115,71 @@
             this.linkLabelAddNewQuestion.Text = "Добавить новый вопрос";
             this.linkLabelAddNewQuestion.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelAddNewQuestion_LinkClicked);
             // 
+            // linkLabelAddTest
+            // 
+            this.linkLabelAddTest.AutoSize = true;
+            this.linkLabelAddTest.Location = new System.Drawing.Point(28, 36);
+            this.linkLabelAddTest.Name = "linkLabelAddTest";
+            this.linkLabelAddTest.Size = new System.Drawing.Size(160, 13);
+            this.linkLabelAddTest.TabIndex = 10;
+            this.linkLabelAddTest.TabStop = true;
+            this.linkLabelAddTest.Text = "Добавить новую контрольную";
+            this.linkLabelAddTest.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelAddTest_LinkClicked);
+            // 
+            // linkLabelResult
+            // 
+            this.linkLabelResult.AutoSize = true;
+            this.linkLabelResult.Location = new System.Drawing.Point(31, 53);
+            this.linkLabelResult.Name = "linkLabelResult";
+            this.linkLabelResult.Size = new System.Drawing.Size(67, 13);
+            this.linkLabelResult.TabIndex = 11;
+            this.linkLabelResult.TabStop = true;
+            this.linkLabelResult.Text = "Результаты";
+            this.linkLabelResult.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelResult_LinkClicked);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.linkLabelResult);
+            this.groupBox1.Controls.Add(this.linkLabelTest);
+            this.groupBox1.Controls.Add(this.linkLabelAddTest);
+            this.groupBox1.Controls.Add(this.linkLabelStatistic);
+            this.groupBox1.Controls.Add(this.linkLabelAddNewQuestion);
+            this.groupBox1.Controls.Add(this.linkLabelUnit);
+            this.groupBox1.Controls.Add(this.linkLabelQuestion);
+            this.groupBox1.Controls.Add(this.linkLabelAddNewUnit);
+            this.groupBox1.Location = new System.Drawing.Point(12, 31);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(200, 183);
+            this.groupBox1.TabIndex = 12;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Навигация";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(722, 459);
-            this.Controls.Add(this.linkLabelAddNewQuestion);
-            this.Controls.Add(this.linkLabelQuestion);
-            this.Controls.Add(this.linkLabelAddNewUnit);
-            this.Controls.Add(this.linkLabelUnit);
-            this.Controls.Add(this.linkLabelStatistic);
-            this.Controls.Add(this.linkLabelTest);
-            this.Controls.Add(this.buttonUnits);
-            this.Controls.Add(this.buttonStatistic);
-            this.Controls.Add(this.buttonTest);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.webBrowser1);
             this.Name = "MainForm";
             this.Text = "Панель управления преподавателя";
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.WebBrowser webBrowser1;
-        private System.Windows.Forms.Button buttonTest;
-        private System.Windows.Forms.Button buttonStatistic;
-        private System.Windows.Forms.Button buttonUnits;
         private System.Windows.Forms.LinkLabel linkLabelTest;
         private System.Windows.Forms.LinkLabel linkLabelStatistic;
         private System.Windows.Forms.LinkLabel linkLabelAddNewUnit;
         private System.Windows.Forms.LinkLabel linkLabelUnit;
         private System.Windows.Forms.LinkLabel linkLabelQuestion;
         private System.Windows.Forms.LinkLabel linkLabelAddNewQuestion;
+        private System.Windows.Forms.LinkLabel linkLabelAddTest;
+        private System.Windows.Forms.LinkLabel linkLabelResult;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

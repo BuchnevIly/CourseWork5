@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace TeacherPanel
 {
@@ -13,11 +12,6 @@ namespace TeacherPanel
             CenterToScreen();
             if (result != DialogResult.OK)
                 Close();
-        }
-
-        private void buttonUnits_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void linkLabelUnit_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -48,6 +42,24 @@ namespace TeacherPanel
         {
             var testPanel = new TestPanel();
             testPanel.ShowDialog();
+        }
+
+        private void linkLabelStatistic_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            var statistic = new Statistic();
+            statistic.ShowDialog();
+        }
+
+        private void linkLabelAddTest_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            var testEditer = new TestEditer();
+            testEditer.ShowDialog();
+        }
+
+        private void linkLabelResult_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            var result = new Result();
+            result.ShowDialog();
         }
     }
 }
