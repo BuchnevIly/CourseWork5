@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 using Model;
 
@@ -14,22 +15,30 @@ namespace Testing
         public MainForm()
         {
             InitializeComponent();
-            Init();
+            if (!Init())
+                return;
+
+            var currentDirectory = Directory.GetCurrentDirectory();
+            var streamReader = new StreamReader(currentDirectory + @"\file\instruction.html");
+            webBrowser1.DocumentText = streamReader.ReadToEnd();
+            streamReader.Close();
+            CenterToScreen();
         }
 
-        private void Init()
+        private bool Init()
         {
             var login = new Login();
             var dialogResult = login.ShowDialog();
             if (dialogResult != DialogResult.OK)
             {
+                Show();
                 Close();
-                return;
+                return false;
             }
                 
-            _tests = Student.GetTest();
             labelName.Text = @"Здраствуйте, " + Student.LastName + @" " + Student.Name + @"!";
             UpdateList();
+            return true;
         }
 
         public static void LoginStudent(Student student)
@@ -39,6 +48,7 @@ namespace Testing
 
         private void UpdateList()
         {
+            _tests = Student.GetTest();
             listView.Items.Clear();
             var i = 0;
             _tests.ForEach(x =>
@@ -71,7 +81,7 @@ namespace Testing
                 testing.ShowDialog();
                 UpdateList();
             }
-            catch (IndexOutOfRangeException)
+            catch (ArgumentOutOfRangeException)
             {
                 MessageBox.Show(@"Выбирете контрольную", @"Ошибка");
             }

@@ -80,6 +80,10 @@
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.checkBoxTrueAnswer);
             this.Controls.Add(this.textBoxAnswer);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(300, 219);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(300, 219);
             this.Name = "AnswerEditer";
             this.Text = "Редактор ответов";
             this.ResumeLayout(false);

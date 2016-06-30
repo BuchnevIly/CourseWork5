@@ -145,6 +145,10 @@
             this.Controls.Add(this.labelLastName);
             this.Controls.Add(this.textBoxName);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(289, 202);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(289, 202);
             this.Name = "TeacherEditer";
             this.Text = "Редактор преподователя";
             this.ResumeLayout(false);

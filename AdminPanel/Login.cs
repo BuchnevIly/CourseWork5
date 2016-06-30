@@ -11,6 +11,7 @@ namespace AdminPanel
         {
             InitializeComponent();
             DialogResult = DialogResult.Cancel;
+            pictureBox1.Image = Properties.Resources.login;
         }
 
         private void buttonLogin_Click(object sender, EventArgs e)
@@ -18,7 +19,12 @@ namespace AdminPanel
             try
             {
                 if (textBoxPassword.Text != "")
-                    Admin.Login(textBoxPassword.Text);
+                {
+                    var admin = new Admin();
+                    admin.Login(textBoxPassword.Text);
+                }
+                
+                DialogResult = DialogResult.OK;
             }
             catch (SqlException exception)
             {
@@ -26,7 +32,7 @@ namespace AdminPanel
                 labelException.Visible = true;
             }
 
-            DialogResult = DialogResult.OK;
+            
         }
 
         private void textBoxPassword_TextChanged(object sender, EventArgs e)

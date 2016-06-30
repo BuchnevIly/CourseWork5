@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.SqlClient;
 using System.Windows.Forms;
+using model;
 
 namespace Testing
 {
@@ -15,6 +9,36 @@ namespace Testing
         public ChangePassword()
         {
             InitializeComponent();
+            textBoxNewPassword.TextChanged += textBoxOldPassword_TextChanged;
+        }
+
+        private void textBoxOldPassword_TextChanged(object sender, System.EventArgs e)
+        {
+            labelException.Visible = false;
+        }
+
+        private void buttonChangePassword_Click(object sender, System.EventArgs e)
+        {
+            var oldPassword = textBoxOldPassword.Text;
+            var newPassword = textBoxNewPassword.Text;
+
+            if (oldPassword == "" || newPassword == "")
+            {
+                labelException.Text = @"Поля не должны быть пусты!";
+                labelException.Visible = true;
+                return;
+            }
+
+            try
+            {
+                MainForm.Student.ChangePassword(newPassword, oldPassword);
+                Close();
+            }
+            catch (SqlException exception)
+            {
+                labelException.Text = exception.Message;
+                labelException.Visible = true;
+            }
         }
     }
 }

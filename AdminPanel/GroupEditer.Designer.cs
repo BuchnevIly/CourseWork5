@@ -93,6 +93,10 @@
             this.Controls.Add(this.labelException);
             this.Controls.Add(this.textBox);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(300, 137);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(300, 137);
             this.Name = "GroupEditer";
             this.Text = "Редактор групп";
             this.ResumeLayout(false);

@@ -38,15 +38,20 @@
             this.linkLabelAddTest = new System.Windows.Forms.LinkLabel();
             this.linkLabelResult = new System.Windows.Forms.LinkLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // webBrowser1
             // 
+            this.webBrowser1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.webBrowser1.Location = new System.Drawing.Point(241, 31);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(451, 399);
+            this.webBrowser1.ScriptErrorsSuppressed = true;
+            this.webBrowser1.Size = new System.Drawing.Size(481, 399);
             this.webBrowser1.TabIndex = 0;
             // 
             // linkLabelTest
@@ -129,7 +134,7 @@
             // linkLabelResult
             // 
             this.linkLabelResult.AutoSize = true;
-            this.linkLabelResult.Location = new System.Drawing.Point(31, 53);
+            this.linkLabelResult.Location = new System.Drawing.Point(28, 53);
             this.linkLabelResult.Name = "linkLabelResult";
             this.linkLabelResult.Size = new System.Drawing.Size(67, 13);
             this.linkLabelResult.TabIndex = 11;
@@ -139,6 +144,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.linkLabel1);
             this.groupBox1.Controls.Add(this.linkLabelResult);
             this.groupBox1.Controls.Add(this.linkLabelTest);
             this.groupBox1.Controls.Add(this.linkLabelAddTest);
@@ -153,6 +159,17 @@
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Навигация";
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(12, 161);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(90, 13);
+            this.linkLabel1.TabIndex = 12;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Сменить пароль";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // MainForm
             // 
@@ -181,5 +198,6 @@
         private System.Windows.Forms.LinkLabel linkLabelAddTest;
         private System.Windows.Forms.LinkLabel linkLabelResult;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }

@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using model;
 using Model;
@@ -97,7 +93,14 @@ namespace Testing
                                 isTrue = false;
                     break;
                 case 3:
-                    isTrue = SqlQuesyion.IsTrue(textBox2.Text, _testQuestions[_currentQuestion].Question.Answers[0].TextAnswer );
+                    try
+                    {
+                        isTrue = SqlQuesyion.IsTrue(textBox2.Text, _testQuestions[_currentQuestion].Question.Answers[0].TextAnswer);
+                    }
+                    catch (Exception)
+                    {
+                        isTrue = false;
+                    }
                     break;
             }
 
@@ -109,6 +112,9 @@ namespace Testing
             };
 
             studentsAnswer.Save();
+
+            pictureBox.Image = null;
+            textBox2.Text = "";
 
             _currentQuestion++;
             if (_currentQuestion < _testQuestions.Count)

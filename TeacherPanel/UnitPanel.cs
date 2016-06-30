@@ -19,6 +19,7 @@ namespace TeacherPanel
         {
             var unitEditer = new UnitEditer();
             unitEditer.ShowDialog();
+            UpdateList();
         }
 
         public void UpdateList()
@@ -44,11 +45,13 @@ namespace TeacherPanel
                 var index = listView.SelectedIndices[0];
                 var questionPanel = new QuestionsPanel(_units[index]);
                 questionPanel.ShowDialog();
+                UpdateList();
             }
             catch (ArgumentOutOfRangeException )
             {
                 var questionPanel = new QuestionsPanel();
                 var dialogResult = questionPanel.ShowDialog();
+                UpdateList();
                 if (dialogResult == DialogResult.OK)
                     UpdateList();
             }
@@ -61,6 +64,7 @@ namespace TeacherPanel
                 var index = listView.SelectedIndices[0];
                 var unitEditer = new UnitEditer(_units[index]);
                 var dialogResult = unitEditer.ShowDialog();
+                UpdateList();
                 if (dialogResult == DialogResult.OK)
                     UpdateList();
             }

@@ -71,7 +71,7 @@
             // 
             // buttonChangePassword
             // 
-            this.buttonChangePassword.Location = new System.Drawing.Point(151, 82);
+            this.buttonChangePassword.Location = new System.Drawing.Point(151, 64);
             this.buttonChangePassword.Name = "buttonChangePassword";
             this.buttonChangePassword.Size = new System.Drawing.Size(109, 23);
             this.buttonChangePassword.TabIndex = 4;
@@ -81,11 +81,10 @@
             // 
             // labelException
             // 
-            this.labelException.AutoSize = true;
             this.labelException.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelException.Location = new System.Drawing.Point(30, 66);
+            this.labelException.Location = new System.Drawing.Point(12, 90);
             this.labelException.Name = "labelException";
-            this.labelException.Size = new System.Drawing.Size(84, 13);
+            this.labelException.Size = new System.Drawing.Size(268, 28);
             this.labelException.TabIndex = 5;
             this.labelException.Text = "Старый пароль";
             this.labelException.Visible = false;
@@ -101,6 +100,10 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBoxNewPassword);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(300, 156);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(300, 156);
             this.Name = "ChangePassword";
             this.Text = "Смена пароля";
             this.ResumeLayout(false);

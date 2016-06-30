@@ -35,12 +35,14 @@
             this.buttonLogin = new System.Windows.Forms.Button();
             this.checkBoxShowPassword = new System.Windows.Forms.CheckBox();
             this.labelException = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 15);
+            this.label1.Location = new System.Drawing.Point(149, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(84, 13);
             this.label1.TabIndex = 0;
@@ -48,7 +50,7 @@
             // 
             // textBoxLogin
             // 
-            this.textBoxLogin.Location = new System.Drawing.Point(116, 12);
+            this.textBoxLogin.Location = new System.Drawing.Point(249, 19);
             this.textBoxLogin.Name = "textBoxLogin";
             this.textBoxLogin.Size = new System.Drawing.Size(158, 20);
             this.textBoxLogin.TabIndex = 1;
@@ -56,7 +58,7 @@
             // 
             // textBoxPassword
             // 
-            this.textBoxPassword.Location = new System.Drawing.Point(116, 38);
+            this.textBoxPassword.Location = new System.Drawing.Point(249, 45);
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.Size = new System.Drawing.Size(158, 20);
             this.textBoxPassword.TabIndex = 3;
@@ -65,7 +67,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 41);
+            this.label2.Location = new System.Drawing.Point(149, 48);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 13);
             this.label2.TabIndex = 2;
@@ -73,7 +75,7 @@
             // 
             // buttonLogin
             // 
-            this.buttonLogin.Location = new System.Drawing.Point(199, 104);
+            this.buttonLogin.Location = new System.Drawing.Point(332, 71);
             this.buttonLogin.Name = "buttonLogin";
             this.buttonLogin.Size = new System.Drawing.Size(75, 23);
             this.buttonLogin.TabIndex = 4;
@@ -84,7 +86,7 @@
             // checkBoxShowPassword
             // 
             this.checkBoxShowPassword.AutoSize = true;
-            this.checkBoxShowPassword.Location = new System.Drawing.Point(18, 65);
+            this.checkBoxShowPassword.Location = new System.Drawing.Point(151, 72);
             this.checkBoxShowPassword.Name = "checkBoxShowPassword";
             this.checkBoxShowPassword.Size = new System.Drawing.Size(128, 17);
             this.checkBoxShowPassword.TabIndex = 5;
@@ -94,20 +96,31 @@
             // 
             // labelException
             // 
-            this.labelException.AutoSize = true;
+            this.labelException.AutoEllipsis = true;
             this.labelException.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelException.Location = new System.Drawing.Point(19, 90);
+            this.labelException.Location = new System.Drawing.Point(149, 105);
             this.labelException.Name = "labelException";
-            this.labelException.Size = new System.Drawing.Size(35, 13);
+            this.labelException.Size = new System.Drawing.Size(248, 34);
             this.labelException.TabIndex = 6;
             this.labelException.Text = "label3";
             this.labelException.Visible = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.InitialImage = global::Testing.Properties.Resources.login;
+            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(113, 115);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 7;
+            this.pictureBox1.TabStop = false;
             // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(299, 139);
+            this.ClientSize = new System.Drawing.Size(422, 148);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.labelException);
             this.Controls.Add(this.checkBoxShowPassword);
             this.Controls.Add(this.buttonLogin);
@@ -115,8 +128,13 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBoxLogin);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(438, 187);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(438, 187);
             this.Name = "Login";
             this.Text = "Авторизация";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -131,5 +149,6 @@
         private System.Windows.Forms.Button buttonLogin;
         private System.Windows.Forms.CheckBox checkBoxShowPassword;
         private System.Windows.Forms.Label labelException;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

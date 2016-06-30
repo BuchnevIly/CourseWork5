@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -117,7 +118,12 @@ namespace Model
 
         public List<Test> GetTest()
         {
-            return Test.GetAll().Where(x => x.Group.Id == Group.Id).ToList();
+            var result = Test.GetAll().Where(x => x.Group.Id == Group.Id && x.TestDataStart < DateTime.Now && x.TestDataEnd > DateTime.Now).ToList();
+            StudentsAnswer.GetAll().Where(x => x.Student.Id == Id).ToList().Select(x => x.TestQuestion.IdTest).Distinct().ToList().ForEach(x =>
+            {
+                result = result.Where(y => y.Id != x).ToList();
+            });
+            return result;
         }
 
     }

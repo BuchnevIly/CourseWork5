@@ -31,9 +31,9 @@
             this.linkLabelLogOut = new System.Windows.Forms.LinkLabel();
             this.labelName = new System.Windows.Forms.Label();
             this.listView = new System.Windows.Forms.ListView();
-            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.label2 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -44,6 +44,7 @@
             // 
             // linkLabelLogOut
             // 
+            this.linkLabelLogOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.linkLabelLogOut.AutoSize = true;
             this.linkLabelLogOut.Location = new System.Drawing.Point(561, 24);
             this.linkLabelLogOut.Name = "linkLabelLogOut";
@@ -55,6 +56,7 @@
             // 
             // labelName
             // 
+            this.labelName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelName.AutoSize = true;
             this.labelName.Location = new System.Drawing.Point(561, 6);
             this.labelName.Name = "labelName";
@@ -77,14 +79,6 @@
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
             // 
-            // webBrowser1
-            // 
-            this.webBrowser1.Location = new System.Drawing.Point(286, 43);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(451, 298);
-            this.webBrowser1.TabIndex = 3;
-            // 
             // columnHeader1
             // 
             this.columnHeader1.Text = "№";
@@ -93,6 +87,17 @@
             // 
             this.columnHeader3.Text = "Контрольная";
             this.columnHeader3.Width = 178;
+            // 
+            // webBrowser1
+            // 
+            this.webBrowser1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.webBrowser1.Location = new System.Drawing.Point(286, 43);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.Size = new System.Drawing.Size(451, 298);
+            this.webBrowser1.TabIndex = 3;
             // 
             // label2
             // 
@@ -121,12 +126,13 @@
             this.buttonStart.Name = "buttonStart";
             this.buttonStart.Size = new System.Drawing.Size(75, 23);
             this.buttonStart.TabIndex = 5;
-            this.buttonStart.Text = "Запуститть";
+            this.buttonStart.Text = "Запустить";
             this.buttonStart.UseVisualStyleBackColor = true;
             this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
             // 
             // linkLabelChangePassword
             // 
+            this.linkLabelChangePassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.linkLabelChangePassword.AutoSize = true;
             this.linkLabelChangePassword.Location = new System.Drawing.Point(605, 24);
             this.linkLabelChangePassword.Name = "linkLabelChangePassword";

@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Model;
 
@@ -27,6 +20,8 @@ namespace Testing
             textBoxPassword.DataBindings.Add("Text", _student, "Password");
 
             textBoxPassword.TextChanged += textBoxLogin_TextChanged;
+
+            pictureBox1.Image = Properties.Resources.login;
         }
 
         private void buttonLogin_Click(object sender, EventArgs e)

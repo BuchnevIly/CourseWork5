@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.IO;
+using System.Windows.Forms;
 
 namespace AdminPanel
 {
@@ -11,6 +12,12 @@ namespace AdminPanel
             var dialogResult = login.ShowDialog();
             if (dialogResult != DialogResult.OK)
                 Close();
+
+            var currentDirectory = Directory.GetCurrentDirectory();
+            var streamReader = new StreamReader(currentDirectory + @"\file\instruction.html");
+            webBrowser.DocumentText = streamReader.ReadToEnd();
+            streamReader.Close();
+            CenterToScreen();
         }
 
         private void linkLabelGroup_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

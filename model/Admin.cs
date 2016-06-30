@@ -12,10 +12,10 @@ namespace model
     public class Admin : Entity
     {      
 
-        public static void Login(string password)
+        public void Login(string password)
         {
-            var sqlCmd = new SqlCommand("change_password_admin", Cnn) { CommandType = CommandType.StoredProcedure };
-            sqlCmd.Parameters.AddWithValue("@new_password", password);
+            var sqlCmd = new SqlCommand("login_admin", Cnn) { CommandType = CommandType.StoredProcedure };
+            sqlCmd.Parameters.AddWithValue("@password", password);
             sqlCmd.ExecuteNonQuery();
         }
 

@@ -178,5 +178,19 @@ namespace TeacherPanel
             pictureBox.Image = null;
             _question.Image = null;
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var index = listView1.SelectedIndices[0];
+                _question.Answers.RemoveAt(index);
+                UpdateAnswers();
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                MessageBox.Show(@"Выделите нужный ответ!", @"Ошибка");
+            }
+        }
     }
 }

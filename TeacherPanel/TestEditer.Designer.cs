@@ -191,6 +191,7 @@
             this.columnHeader3,
             this.columnHeader4});
             this.listViewAllQueston.FullRowSelect = true;
+            this.listViewAllQueston.GridLines = true;
             this.listViewAllQueston.Location = new System.Drawing.Point(16, 34);
             this.listViewAllQueston.Name = "listViewAllQueston";
             this.listViewAllQueston.Size = new System.Drawing.Size(367, 160);
@@ -226,6 +227,7 @@
             this.columnHeader7,
             this.columnHeader8});
             this.listViewTestQuestion.FullRowSelect = true;
+            this.listViewTestQuestion.GridLines = true;
             this.listViewTestQuestion.Location = new System.Drawing.Point(16, 229);
             this.listViewTestQuestion.Name = "listViewTestQuestion";
             this.listViewTestQuestion.Size = new System.Drawing.Size(367, 132);
@@ -342,6 +344,7 @@
             this.columnHeader9,
             this.columnHeader10});
             this.listViewGroup.FullRowSelect = true;
+            this.listViewGroup.GridLines = true;
             this.listViewGroup.Location = new System.Drawing.Point(16, 34);
             this.listViewGroup.Name = "listViewGroup";
             this.listViewGroup.Size = new System.Drawing.Size(367, 356);
@@ -369,6 +372,10 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.buttonSave);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(1041, 466);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(1041, 466);
             this.Name = "TestEditer";
             this.Text = "Редактор контрольной";
             this.groupBox1.ResumeLayout(false);

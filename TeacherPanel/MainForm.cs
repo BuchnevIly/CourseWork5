@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.IO;
+using System.Windows.Forms;
 
 namespace TeacherPanel
 {
@@ -12,6 +13,13 @@ namespace TeacherPanel
             CenterToScreen();
             if (result != DialogResult.OK)
                 Close();
+
+            var currentDirectory = Directory.GetCurrentDirectory();
+            var streamReader = new StreamReader(currentDirectory + @"\file\instruction.html");
+            webBrowser1.DocumentText = streamReader.ReadToEnd();
+            streamReader.Close();
+            CenterToScreen();
+
         }
 
         private void linkLabelUnit_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -60,6 +68,11 @@ namespace TeacherPanel
         {
             var result = new Result();
             result.ShowDialog();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
         }
     }
 }
